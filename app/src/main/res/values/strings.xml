@@ -1,0 +1,12 @@
+<resources>
+  <string name="app_name">乱七八糟的东西</string>
+  <string name="title_activity_base">BaseActivity</string>
+
+
+
+  <!--error empty message-->
+
+  <string name="error_message">数据加载异常\n点击重试~</string>
+  <string name="empty_message">没有数据额~</string>
+
+</resources>

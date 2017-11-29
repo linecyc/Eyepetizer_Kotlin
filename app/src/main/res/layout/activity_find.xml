@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+  <data>
+    <variable
+        name="find"
+        type="com.linecy.copy.mvvm.viewmodel.FindViewModel"
+        />
+  </data>
+  <android.support.v4.widget.SwipeRefreshLayout
+      xmlns:android="http://schemas.android.com/apk/res/android"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      >
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{find.text}"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
+  </android.support.v4.widget.SwipeRefreshLayout>
+</layout>

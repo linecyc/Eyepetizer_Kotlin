@@ -1,0 +1,36 @@
+package com.linecy.copy
+
+import android.app.Activity
+import android.app.Application
+import com.linecy.copy.di.component.DaggerAppComponent
+import com.linecy.copy.di.module.AppModule
+import dagger.android.AndroidInjector
+import dagger.android.DispatchingAndroidInjector
+import dagger.android.HasActivityInjector
+import timber.log.Timber
+import javax.inject.Inject
+
+/**
+ * @author by linecy
+ */
+
+class CopyApplication : Application(), HasActivityInjector {
+
+  @Inject
+  lateinit var dispatchingActivityInjector: DispatchingAndroidInjector<Activity>
+
+  override fun activityInjector(): AndroidInjector<Activity> = dispatchingActivityInjector
+
+  override fun onCreate() {
+    super.onCreate()
+    if (BuildConfig.DEBUG) {
+      Timber.plant(Timber.DebugTree())
+    }
+    DaggerAppComponent.builder()
+        .appModule(AppModule(this))
+        .build()
+        .inject(this)
+
+  }
+
+}

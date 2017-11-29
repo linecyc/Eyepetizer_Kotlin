@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    >
+  <com.linecy.copy.ui.widget.RollSquareView
+      android:id="@+id/rollSquareView"
+      android:layout_width="80dp"
+      android:layout_height="80dp"
+      android:background="@android:color/transparent"
+      android:visibility="invisible"
+      app:fix_round_cornor="5"
+      app:half_rect_width="10dp"
+      app:is_clockwise="false"
+      app:line_count="3"
+      app:rect_divier_width="5dp"
+      app:roll_interpolator="@android:anim/bounce_interpolator"
+      app:roll_round_cornor="5"
+      app:roll_speed="800"
+      app:square_color="@color/primary_color"
+      app:start_empty_position="3"
+      />
+</LinearLayout>

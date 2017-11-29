@@ -1,0 +1,75 @@
+apply plugin: 'kotlin-kapt'
+apply plugin: 'com.android.library'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+
+
+
+android {
+
+  compileSdkVersion rootProject.ext.compileSdkVersion
+  buildToolsVersion rootProject.ext.buildToolsVersion
+
+  // aaptOptions.cruncherEnabled = false
+  // aaptOptions.useNewCruncher = false
+
+  defaultConfig {
+    minSdkVersion rootProject.ext.minSdkVersion
+    targetSdkVersion rootProject.ext.targetSdkVersion
+    versionCode 1
+    versionName "1.0"
+  }
+
+  compileOptions {
+    sourceCompatibility JavaVersion.VERSION_1_8
+    targetCompatibility JavaVersion.VERSION_1_8
+  }
+
+  buildTypes {
+    //debug { testCoverageEnabled true }
+    release {
+      //matchingFallbacks = ['internal', 'product']
+      testCoverageEnabled true
+      //consumerProguardFiles 'proguard-rules.pro'
+    }
+  }
+  //在module中加入databinding导致编译通不过
+  /*dataBinding {
+    enabled = true
+  }*/
+}
+dependencies {
+  implementation fileTree(dir: 'libs', include: ['*.jar'])
+  implementation rootProject.ext.appcompat
+  implementation rootProject.ext.kotlinStdlib
+  implementation rootProject.ext.androidDesign
+  testImplementation rootProject.ext.junit
+
+  implementation rootProject.ext.lifecycleRuntime
+  implementation rootProject.ext.lifecycleExtensions
+  implementation rootProject.ext.lifecycleJava8
+  kapt rootProject.ext.lifecycleCompiler
+  implementation rootProject.ext.roomRuntime
+  kapt rootProject.ext.roomCompiler
+  //testCompile rootProject.ext.roomTesting
+  implementation rootProject.ext.room
+
+  //dagger for android
+  implementation rootProject.ext.dagger
+  implementation rootProject.ext.daggerSupport
+  kapt rootProject.ext.daggerCompiler
+  kapt rootProject.ext.daggerProcessor
+
+  implementation rootProject.ext.rxJava2
+  implementation rootProject.ext.rxAndroid2
+  //  implementation rootProject.ext.rxPreferences
+
+  implementation rootProject.ext.okHttp
+  implementation rootProject.ext.okHttpLoggingInterceptor
+  implementation rootProject.ext.moshi
+  implementation rootProject.ext.moshiAdapters
+  implementation rootProject.ext.retrofit
+  implementation rootProject.ext.retrofitAdapterRxJava
+  implementation rootProject.ext.retrofitConverterMoshi
+  implementation rootProject.ext.timber
+}
