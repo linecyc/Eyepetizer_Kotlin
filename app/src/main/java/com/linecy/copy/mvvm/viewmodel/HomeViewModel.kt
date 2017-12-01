@@ -2,8 +2,11 @@ package com.linecy.copy.mvvm.viewmodel
 
 import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
-import android.arch.lifecycle.MutableLiveData
 import android.databinding.ObservableField
+import com.linecy.copy.R
+import com.linecy.copy.mvvm.LifeEventCallback
+import com.linecy.copy.mvvm.OnLoadingStateChangedListener
+import com.linecy.copy.mvvm.ViewStyle
 import com.linecy.core.EndSubscriber
 import com.linecy.core.data.model.HomeModel
 import com.linecy.core.repository.HomeRepository
@@ -11,7 +14,6 @@ import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers
 import rx.subscriptions.CompositeSubscription
-import java.util.regex.Pattern
 import javax.inject.Inject
 
 /**
@@ -22,41 +24,48 @@ class HomeViewModel @Inject constructor(application: Application,
 
 
   private var subscriptions = CompositeSubscription()
-  val viewStyle = ViewStyle()
-  var mObservableHomeModel: MutableLiveData<HomeModel> = MutableLiveData()
-  var mHomeModel: ObservableField<HomeModel> = ObservableField()
-  private var data: String? = ""
 
+  //好像对同一个对象无效？
+  val observableViewStyle: ObservableField<ViewStyle> = ObservableField(
+      ViewStyle.builder().contentId(R.id.content).build())
+  val observableHomeModel: ObservableField<HomeModel> = ObservableField()
+  private var date: String? = null
+  private var listener: OnLoadingStateChangedListener? = null
+
+  fun addOnLoadingStateChangedListener(l: OnLoadingStateChangedListener) {
+    this.listener = l
+  }
 
   override fun onStart() {
-    loadData(true, "")
+    observableViewStyle.set(
+        ViewStyle.builder().contentId(R.id.content).isLoading(true).build())
+    loadData(true, date)
   }
 
   override fun onRefresh() {
-    viewStyle.isRefresh.set(true)
-    loadData(true, "")
+    observableViewStyle.set(
+        ViewStyle.builder().contentId(R.id.content).isRefresh(true).isLoading(true).build())
+    loadData(true, date)
   }
 
   override fun onLoadMore() {
-    if (!viewStyle.isLoading.get()) {
-      loadData(false, getData())
+    if (!observableViewStyle.get().isLoading) {
+      observableViewStyle.set(
+          ViewStyle.builder().contentId(R.id.content).isLoading(true).build())
+      loadData(false, date)
     }
   }
 
   override fun onDestroy() {
-
+    onCleared()
   }
 
-  private fun loadData(isFirst: Boolean, next: String) {
-
-    viewStyle.isLoading.set(!viewStyle.isRefresh.get())
-    viewStyle.isError.set(false)
-    viewStyle.isEmpty.set(false)
-
+  private fun loadData(isFirst: Boolean, next: String?) {
+    listener?.onShowLoading()
     subscriptions.add(
         Observable.just(isFirst).flatMap {
           when (isFirst) {
-            true -> repository.getHomeData()
+            true -> repository.getHomeMoreData(null, null)
 
             false -> repository.getHomeMoreData(next, "2")
           }
@@ -64,33 +73,31 @@ class HomeViewModel @Inject constructor(application: Application,
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : EndSubscriber<HomeModel>() {
               override fun onNext(t: HomeModel?) {
-                mObservableHomeModel.value = t
+
+                if (isFirst && (t == null || t.count == 0)) {
+                  observableViewStyle.set(
+                      ViewStyle.builder().isEmpty(true).contentId(R.id.content).build())
+                } else {
+                  observableViewStyle.set(
+                      ViewStyle.builder().contentId(R.id.content).build())
+                }
+                date = t?.date!!.toString()
+                observableHomeModel.set(t)
 
               }
 
               override fun onEnd() {
-                viewStyle.isLoading.set(false)
-                viewStyle.isRefresh.set(false)
+                listener?.onHideLoading()
               }
 
               override fun onError(e: Throwable) {
                 super.onError(e)
-                viewStyle.isError.set(true)
+                observableViewStyle.set(
+                    ViewStyle.builder().contentId(R.id.content).isError(true).build())
               }
 
             }))
 
-  }
-
-  private fun getData(): String {
-    val regEx = "[^0-9]"
-    val p = Pattern.compile(regEx)
-    if (mObservableHomeModel.value != null) {
-      val m = p.matcher(mObservableHomeModel.value?.nextPageUrl)
-      data = m.replaceAll("").subSequence(1, m.replaceAll("").length - 1).toString()
-
-    }
-    return data as String
   }
 
 }

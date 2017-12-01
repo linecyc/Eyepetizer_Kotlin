@@ -1,22 +1,21 @@
 package com.linecy.copy.ui.home.fragment
 
-import android.arch.lifecycle.Observer
 import android.arch.lifecycle.ViewModelProviders
-import android.databinding.Observable
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import com.linecy.copy.R
 import com.linecy.copy.databinding.FragmentHomeBinding
+import com.linecy.copy.mvvm.OnLoadingStateChangedListener
 import com.linecy.copy.mvvm.viewmodel.HomeViewModel
 import com.linecy.copy.ui.BaseFragment
 import com.linecy.copy.ui.home.adapter.HomeAdapter
-import com.linecy.core.data.model.HomeModel
+import com.linecy.copy.ui.misc.ViewContainer
 
 /**
  * @author by linecy
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
+class HomeFragment : BaseFragment<FragmentHomeBinding>(), ViewContainer.OnReloadCallback, OnLoadingStateChangedListener {
 
 
   private lateinit var mAdapter: HomeAdapter
@@ -31,9 +30,14 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     mAdapter = HomeAdapter(context)
     mHomeViewModel = ViewModelProviders.of(this, mViewModelFactory).get(
         HomeViewModel::class.java)
+    mHomeViewModel.addOnLoadingStateChangedListener(this)
     fBinding.swipeRefreshLayout.setColorSchemeResources(R.color.primary_color_dark)
-    fBinding.swipeRefreshLayout.setOnRefreshListener { mHomeViewModel.onRefresh() }
-
+    fBinding.swipeRefreshLayout.setOnRefreshListener {
+      mAdapter.setRefreshFlag()
+      mHomeViewModel.onRefresh()
+    }
+    fBinding.viewContainer.setDisplayedChildId(R.id.content)
+    fBinding.viewContainer.setOnReloadCallback(this)
     fBinding.fHomeModel = mHomeViewModel
     val manager = LinearLayoutManager(context)
     fBinding.recyclerView.layoutManager = manager
@@ -41,27 +45,12 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     fBinding.recyclerView.addOnScrollListener(object : RecyclerView.OnScrollListener() {
       override fun onScrolled(recyclerView: RecyclerView?, dx: Int, dy: Int) {
         super.onScrolled(recyclerView, dx, dy)
+        fBinding.swipeRefreshLayout.isEnabled = manager
+            .findFirstCompletelyVisibleItemPosition() == 0
         val lastVisibleItemPosition = manager.findLastVisibleItemPosition()
         if (lastVisibleItemPosition + 1 == fBinding.recyclerView.adapter.itemCount) {
 
           mHomeViewModel.onLoadMore()
-        }
-      }
-    })
-
-    mHomeViewModel.mObservableHomeModel.observe(this,
-        Observer<HomeModel> {
-          mHomeViewModel.mHomeModel.set(it)
-
-        })
-
-    mHomeViewModel.viewStyle.isLoading.addOnPropertyChangedCallback(object :
-        Observable.OnPropertyChangedCallback() {
-      override fun onPropertyChanged(p0: Observable?, p1: Int) {
-        if (mHomeViewModel.viewStyle.isLoading.get()) {
-          showLoadingDialog()
-        } else {
-          hideLoadingDialog()
         }
       }
     })
@@ -71,4 +60,17 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
   }
 
 
+  override fun onShowLoading() {
+    if (!fBinding.swipeRefreshLayout.isRefreshing) {
+      showLoadingDialog()
+    }
+  }
+
+  override fun onHideLoading() {
+    hideLoadingDialog()
+  }
+
+  override fun onReload() {
+    mHomeViewModel.onRefresh()
+  }
 }

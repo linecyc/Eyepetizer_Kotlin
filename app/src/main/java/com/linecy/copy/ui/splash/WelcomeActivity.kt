@@ -36,6 +36,9 @@ class WelcomeActivity : BaseActivity<ActivityWelcomeBinding, ViewModel>(), HasSu
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
+    val intent = Intent(this, MainActivity::class.java)
+    startActivity(intent)
+    finish()
 
     window.setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
         WindowManager.LayoutParams.FLAG_FULLSCREEN)

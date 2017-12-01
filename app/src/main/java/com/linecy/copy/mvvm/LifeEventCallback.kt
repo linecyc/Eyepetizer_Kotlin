@@ -1,4 +1,4 @@
-package com.linecy.copy.mvvm.viewmodel
+package com.linecy.copy.mvvm
 
 /**
  * @author by linecy

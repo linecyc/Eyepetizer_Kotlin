@@ -3,31 +3,39 @@ package com.linecy.core.data.model
 /**
  * @author by linecy
  */
-data class HomeModel(var nextPageUrl: String?, var nextPublishTime: Long,
-    var newestIssueType: String?, var dialog: Any?,
-    var issueList: List<IssueListModel>?) {
+data class HomeModel(var itemList: List<ItemList>?,
+    var count: Int,
+    var total: Int,
+    var nextPageUrl: String?,
+    var date: Long,
+    var nextPublishTime: Long,
+    var dialog: Any?,
+    var topIssue: Any?,
+    var refreshCount: Int,
+    var lastStartId: Int) {
 
-  data class IssueListModel(var releaseTime: Long, var type: String?,
-      var date: Long, var publishTime: Long, var count: Int,
-      var itemList: List<ItemListModel>?) {
+  data class ItemList(var type: String?, var data: Data?, var tag: Any?, var id: Int) {
 
-    data class ItemListModel(var type: String?, var data: DataModel?, var tag: Any?) {
+    data class Data(var dataType: String?, var id: Int, var title: String?, var slogan: String?,
+        var description: String?, var image: String?, var provider: Provider?,
+        var category: String?,
+        var actionUrl: String?,
+        var adTrack: Any?, var isShade: Boolean,
+        var label: Any?, var labelList: Any?, var header: Any?,
+        var duration: Long?, var playUrl: String, var cover: Cover?,
+        var author: Author?,
+        var releaseTime: Long?, var consumption: Consumption?, var campaign: Any?,
+        var waterMarks: Any?) {
 
-      data class DataModel(var dataType: String?, var id: Int, var title: String?,
-          var description: String?, var image: String?, var actionUrl: String?,
-          var adTrack: Any?, var isShade: Boolean,
-          var label: Any?, var labelList: Any?, var header: Any?, var category: String?,
-          var duration: Long?, var playUrl: String, var cover: CoverModel?,
-          var author: AuthorModel?,
-          var releaseTime: Long?, var consumption: ConsumptionModel?) {
-        data class CoverModel(var feed: String?, var detail: String?,
-            var blurred: String?, var sharing: String?, var homepage: String?)
+      data class Provider(var name: String?, var alias: String?, var icon: String?)
+      data class Cover(var feed: String?, var detail: String?,
+          var blurred: String?, var sharing: String?, var homepage: String?)
 
-        data class ConsumptionModel(var collectionCount: Int, var shareCount: Int,
-            var replyCount: Int)
+      data class Consumption(var collectionCount: Int, var shareCount: Int,
+          var replyCount: Int)
 
-        data class AuthorModel(var icon: String)
-      }
+      data class Author(var id: Int, var icon: String, var name: String?, var description: String?,
+          var link: String?)
     }
   }
 }

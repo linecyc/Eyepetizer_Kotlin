@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
-import android.support.v4.view.ViewPager
 import com.linecy.copy.R
 import com.linecy.copy.databinding.ActivityMainBinding
 import com.linecy.copy.ui.BaseActivity
@@ -35,8 +34,8 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportF
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
-    setToolbarTitle("首页")
-
+    //setToolbarTitle("首页")
+    hideToolBar()
     val list = ArrayList<Fragment>()
     list.add(HomeFragment())
     list.add(FindFragment())
@@ -44,17 +43,17 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportF
     list.add(FindFragment())
     mDataBinding.viewPager.adapter = FragmentAdapter(supportFragmentManager, list)
     mDataBinding.viewPager.offscreenPageLimit = 3
-    mDataBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-      override fun onPageScrolled(position: Int, positionOffset: Float,
-          positionOffsetPixels: Int) {
-      }
-
-      override fun onPageSelected(position: Int) {
-        setToolbarTitle(mDataBinding.viewPager.adapter.getPageTitle(position))
-      }
-
-      override fun onPageScrollStateChanged(state: Int) {}
-    })
+//    mDataBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
+//      override fun onPageScrolled(position: Int, positionOffset: Float,
+//          positionOffsetPixels: Int) {
+//      }
+//
+//      override fun onPageSelected(position: Int) {
+//        setToolbarTitle(mDataBinding.viewPager.adapter.getPageTitle(position))
+//      }
+//
+//      override fun onPageScrollStateChanged(state: Int) {}
+//    })
     mDataBinding.tabLayout.setupWithViewPager(mDataBinding.viewPager)
     mDataBinding.tabLayout.getTabAt(0)?.setIcon(R.drawable.selector_home_button)
     mDataBinding.tabLayout.getTabAt(1)?.setIcon(R.drawable.selector_live_button)

@@ -3,7 +3,7 @@
   <data>
     <variable
         name="homeAdapterItem"
-        type="com.linecy.core.data.model.HomeModel.IssueListModel.ItemListModel"
+        type="com.linecy.core.data.model.HomeModel.ItemList"
         />
 
   </data>

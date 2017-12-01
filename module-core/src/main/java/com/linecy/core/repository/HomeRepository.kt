@@ -9,7 +9,5 @@ import rx.Observable
 interface HomeRepository {
 
 
-  fun getHomeData(): Observable<HomeModel>
-
-  fun getHomeMoreData(data: String, num: String): Observable<HomeModel>
+  fun getHomeMoreData(date: String?, num: String?): Observable<HomeModel>
 }

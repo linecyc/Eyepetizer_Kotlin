@@ -13,8 +13,9 @@ import com.linecy.core.data.model.HomeModel
 
 
 class HomeAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
-  private var list = ArrayList<HomeModel.IssueListModel.ItemListModel>()
+  private var list = ArrayList<HomeModel.ItemList>()
   private val inflater: LayoutInflater = LayoutInflater.from(context)
+  private var isRefresh: Boolean = true
 
   override fun getItemCount(): Int {
     return list.size
@@ -39,7 +40,7 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
       }
     }
 
-    fun bindData(itemListModel: HomeModel.IssueListModel.ItemListModel) {
+    fun bindData(itemListModel: HomeModel.ItemList) {
       dataBinding.setVariable(BR.homeAdapterItem, itemListModel)
       dataBinding.executePendingBindings()
     }
@@ -47,27 +48,20 @@ class HomeAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
 
   fun refreshData(homeModel: HomeModel?) {
-    this.list.clear()
-    if (homeModel != null) {
-      homeModel.issueList!!
-          .flatMap { it.itemList!! }
+    if (isRefresh) {
+      this.list.clear()
+      this.isRefresh = false
+    }
+
+    if (homeModel?.itemList != null) {
+      homeModel.itemList!!
           .filter { it.type.equals("video") }
           .forEach { this.list.add(it) }
-      notifyDataSetChanged()
     }
+    notifyDataSetChanged()
   }
 
-
-  fun addData(homeModel: HomeModel?) {
-
-    if (homeModel != null) {
-      homeModel.issueList!!
-          .flatMap { it.itemList!! }
-          .filter { it.type.equals("video") }
-          .forEach { this.list.add(it) }
-      notifyDataSetChanged()
-    }
+  fun setRefreshFlag() {
+    isRefresh = true
   }
-
-
 }

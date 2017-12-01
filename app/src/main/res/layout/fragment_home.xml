@@ -6,18 +6,68 @@
         type="com.linecy.copy.mvvm.viewmodel.HomeViewModel"
         />
   </data>
-  <android.support.v4.widget.SwipeRefreshLayout
+  <com.linecy.copy.ui.misc.ViewContainer
       xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/swipeRefreshLayout"
+      android:id="@+id/viewContainer"
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      app:refresh="@{fHomeModel.viewStyle.isRefresh.get()}"
+      android:inAnimation="@android:anim/fade_in"
+      android:outAnimation="@android:anim/fade_out"
+      app:viewFull="@{fHomeModel.observableViewStyle.get()}"
+
       >
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/recyclerView"
+    <RelativeLayout
+        android:id="@+id/content"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:homeAdapter="@{fHomeModel.mHomeModel.get()}"
-        />
-  </android.support.v4.widget.SwipeRefreshLayout>
+        android:layout_height="match_parent"
+        >
+      <android.support.v4.widget.SwipeRefreshLayout
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          android:id="@+id/swipeRefreshLayout"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          app:refresh="@{fHomeModel.observableViewStyle.get().isRefresh}"
+          >
+        <android.support.design.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
+          <android.support.design.widget.AppBarLayout
+              android:id="@+id/appbar_layout"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:background="@color/background"
+              >
+            <android.support.design.widget.CollapsingToolbarLayout
+                android:id="@+id/collapsing_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:contentScrim="?attr/colorPrimary"
+                app:layout_scrollFlags="enterAlwaysCollapsed"
+                >
+              <com.youth.banner.Banner
+                  android:id="@+id/bannerView"
+                  android:layout_width="match_parent"
+                  android:layout_height="200dp"
+                  android:scaleType="fitXY"
+                  app:loadBanner="@{fHomeModel.observableHomeModel.get()}"
+                  />
+
+            </android.support.design.widget.CollapsingToolbarLayout>
+
+
+          </android.support.design.widget.AppBarLayout>
+
+          <android.support.v7.widget.RecyclerView
+              android:id="@+id/recyclerView"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              app:homeAdapter="@{fHomeModel.observableHomeModel.get()}"
+              app:layout_behavior="@string/appbar_scrolling_view_behavior"
+              />
+        </android.support.design.widget.CoordinatorLayout>
+
+      </android.support.v4.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+  </com.linecy.copy.ui.misc.ViewContainer>
 </layout>
