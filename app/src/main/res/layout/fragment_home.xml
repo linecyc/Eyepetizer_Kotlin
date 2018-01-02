@@ -1,73 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto">
-  <data>
-    <variable
-        name="fHomeModel"
-        type="com.linecy.copy.mvvm.viewmodel.HomeViewModel"
-        />
-  </data>
-  <com.linecy.copy.ui.misc.ViewContainer
-      xmlns:android="http://schemas.android.com/apk/res/android"
-      android:id="@+id/viewContainer"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="match_parent"
-      android:inAnimation="@android:anim/fade_in"
-      android:outAnimation="@android:anim/fade_out"
-      app:viewFull="@{fHomeModel.observableViewStyle.get()}"
-
+      android:orientation="vertical"
       >
-    <RelativeLayout
-        android:id="@+id/content"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/ic_menu"
+          tools:ignore="ContentDescription"
+          />
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/titleRecyclerView"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"
+          android:layout_marginLeft="@dimen/margin_normal"
+          android:layout_marginRight="@dimen/margin_normal"
+          android:layout_marginTop="@dimen/margin_small_normal"
+          android:layout_weight="1"
+          android:background="@color/background"
+          />
+      <ImageView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@drawable/ic_action_search"
+          tools:ignore="ContentDescription"
+          />
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:background="@color/divider"
+        />
+    <android.support.v4.view.ViewPager
+        android:id="@+id/homeViewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        >
-      <android.support.v4.widget.SwipeRefreshLayout
-          xmlns:android="http://schemas.android.com/apk/res/android"
-          android:id="@+id/swipeRefreshLayout"
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          app:refresh="@{fHomeModel.observableViewStyle.get().isRefresh}"
-          >
-        <android.support.design.widget.CoordinatorLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            >
-          <android.support.design.widget.AppBarLayout
-              android:id="@+id/appbar_layout"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:background="@color/background"
-              >
-            <android.support.design.widget.CollapsingToolbarLayout
-                android:id="@+id/collapsing_toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:contentScrim="?attr/colorPrimary"
-                app:layout_scrollFlags="enterAlwaysCollapsed"
-                >
-              <com.youth.banner.Banner
-                  android:id="@+id/bannerView"
-                  android:layout_width="match_parent"
-                  android:layout_height="200dp"
-                  android:scaleType="fitXY"
-                  app:loadBanner="@{fHomeModel.observableHomeModel.get()}"
-                  />
-
-            </android.support.design.widget.CollapsingToolbarLayout>
-
-
-          </android.support.design.widget.AppBarLayout>
-
-          <android.support.v7.widget.RecyclerView
-              android:id="@+id/recyclerView"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              app:homeAdapter="@{fHomeModel.observableHomeModel.get()}"
-              app:layout_behavior="@string/appbar_scrolling_view_behavior"
-              />
-        </android.support.design.widget.CoordinatorLayout>
-
-      </android.support.v4.widget.SwipeRefreshLayout>
-    </RelativeLayout>
-  </com.linecy.copy.ui.misc.ViewContainer>
+        />
+  </LinearLayout>
 </layout>

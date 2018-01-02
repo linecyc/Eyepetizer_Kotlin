@@ -4,67 +4,70 @@
     >
   <data>
     <variable
-        name="homeAdapterItem"
+        name="bannerItem"
         type="com.linecy.core.data.model.HomeModel.ItemList"
         />
-
   </data>
-  <RelativeLayout
-      xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+  <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:padding="@dimen/padding_normal"
+      android:orientation="vertical"
       >
     <ImageView
-        android:id="@+id/ivCover"
+        android:id="@+id/bannerImage"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_alignParentTop="true"
-        android:scaleType="fitXY"
-        app:loadRoundPicture="@{homeAdapterItem.data.cover.feed}"
-
+        android:layout_height="180dp"
+        android:layout_marginLeft="@dimen/margin_extra_small"
+        android:layout_marginRight="@dimen/margin_extra_small"
+        android:scaleType="centerCrop"
+        app:loadRoundPicture="@{bannerItem.data.cover.feed}"
         />
     <LinearLayout
-        android:id="@+id/layoutAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/ivCover"
+        android:layout_marginBottom="@dimen/margin_middle"
+        android:layout_marginLeft="@dimen/margin_extra_small"
+        android:layout_marginRight="@dimen/margin_extra_small"
         android:layout_marginTop="@dimen/margin_normal"
         android:gravity="center_vertical"
         android:orientation="horizontal"
         >
+
       <ImageView
           android:layout_width="35dp"
           android:layout_height="35dp"
-          android:layout_gravity="center"
-          app:loadCirclePicture="@{homeAdapterItem.data.author.icon}"
+          app:loadCirclePicture="@{bannerItem.data.author.icon}"
           tools:src="@mipmap/ic_launcher"
           />
       <LinearLayout
           android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:layout_marginLeft="15dp"
           android:layout_weight="1"
           android:orientation="vertical"
+          android:paddingLeft="@dimen/padding_normal"
           >
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="@{homeAdapterItem.data.title}"
+            android:text="@{bannerItem.data.title}"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/font_normal"
             android:textStyle="bold"
             tools:text="泰国反思广告：我不是「包租婆」"
             />
         <TextView
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="@dimen/padding_smallest"
-            android:text="@{homeAdapterItem.data.author.name+'/'+homeAdapterItem.data.author.description}"
+            android:layout_marginTop="@dimen/margin_extra_small"
+            android:maxLines="1"
+            android:text="@{bannerItem.data.slogan}"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/font_small"
             tools:text="泰式反转，结局也许不是你想的那样"
+
             />
       </LinearLayout>
       <ImageView
@@ -73,10 +76,12 @@
           android:layout_height="wrap_content"
           android:src="@drawable/ic_action_share_grey"
           />
-
     </LinearLayout>
-
-
-  </RelativeLayout>
-
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/divider"
+        android:layout_marginBottom="@dimen/margin_middle"
+        android:background="@color/divider"
+        />
+  </LinearLayout>
 </layout>

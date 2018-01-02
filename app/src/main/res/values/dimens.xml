@@ -1,5 +1,45 @@
 <resources>
   <dimen name="fab_margin">16dp</dimen>
-  <dimen name="padding_normal">16dp</dimen>
-  <dimen name="margin_normal">16dp</dimen>
+
+
+  <!-- normal dimens -->
+  <dimen name="margin_extreme_large">40dip</dimen>
+  <dimen name="margin_extra_large">36dip</dimen>
+  <dimen name="margin_largest">32dip</dimen>
+  <dimen name="margin_large">24dip</dimen>
+  <dimen name="margin_little_large">22dip</dimen>
+  <dimen name="margin_middle">20dip</dimen>
+  <dimen name="margin_18">18dip</dimen>
+  <dimen name="margin_normal">16dip</dimen>
+  <dimen name="margin_little_small">14dip</dimen>
+  <dimen name="margin_small">12dip</dimen>
+  <dimen name="margin_small_normal">10dip</dimen>
+  <dimen name="margin_smaller">8dip</dimen>
+  <dimen name="margin_smallest">6dip</dimen>
+  <dimen name="margin_extra_small">4dip</dimen>
+
+
+  <dimen name="padding_extra_large">36dip</dimen>
+  <dimen name="padding_largest">32dip</dimen>
+  <dimen name="padding_larger">28dip</dimen>
+  <dimen name="padding_large">24dip</dimen>
+  <dimen name="padding_middle">20dip</dimen>
+  <dimen name="padding_18">18dip</dimen>
+  <dimen name="padding_normal">16dip</dimen>
+  <dimen name="padding_little_small">14dip</dimen>
+  <dimen name="padding_small">12dip</dimen>
+  <dimen name="padding_smaller">8dip</dimen>
+  <dimen name="padding_smallest">6dip</dimen>
+  <dimen name="padding_extra_small">4dip</dimen>
+  <dimen name="padding_extreme_small">2dip</dimen>
+
+  <dimen name="divider">1dp</dimen>
+
+
+  <dimen name="font_smallest">12sp</dimen>
+  <dimen name="font_small">16sp</dimen>
+  <dimen name="font_normal">18sp</dimen>
+  <dimen name="font_middle">20sp</dimen>
+  <dimen name="font_large">24sp</dimen>
+  <dimen name="font_largest">32sp</dimen>
 </resources>

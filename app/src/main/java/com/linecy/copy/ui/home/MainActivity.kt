@@ -34,7 +34,6 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportF
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
-    //setToolbarTitle("首页")
     hideToolBar()
     val list = ArrayList<Fragment>()
     list.add(HomeFragment())
@@ -43,17 +42,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportF
     list.add(FindFragment())
     mDataBinding.viewPager.adapter = FragmentAdapter(supportFragmentManager, list)
     mDataBinding.viewPager.offscreenPageLimit = 3
-//    mDataBinding.viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-//      override fun onPageScrolled(position: Int, positionOffset: Float,
-//          positionOffsetPixels: Int) {
-//      }
-//
-//      override fun onPageSelected(position: Int) {
-//        setToolbarTitle(mDataBinding.viewPager.adapter.getPageTitle(position))
-//      }
-//
-//      override fun onPageScrollStateChanged(state: Int) {}
-//    })
+
     mDataBinding.tabLayout.setupWithViewPager(mDataBinding.viewPager)
     mDataBinding.tabLayout.getTabAt(0)?.setIcon(R.drawable.selector_home_button)
     mDataBinding.tabLayout.getTabAt(1)?.setIcon(R.drawable.selector_live_button)
@@ -66,7 +55,7 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportF
       private val list: ArrayList<Fragment>) : FragmentPagerAdapter(
       manager) {
 
-    private val titleList = arrayOf("首页", "发现", "热门", "我的")
+    private val titleList = arrayOf("首页", "关注", "通知", "我的")
 
 
     override fun getItem(position: Int): Fragment {

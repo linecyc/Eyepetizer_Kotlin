@@ -1,19 +1,20 @@
 package com.linecy.copy.ui.splash.fragment
 
-import android.arch.lifecycle.ViewModelProviders
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
 import com.linecy.copy.R
 import com.linecy.copy.databinding.FragmentWelcomeBinding
-import com.linecy.copy.mvvm.viewmodel.WelcomeViewModel
 import com.linecy.copy.ui.BaseFragment
 import com.linecy.copy.ui.home.MainActivity
+import kotlinx.android.synthetic.main.fragment_welcome.btnSkip
+import kotlinx.android.synthetic.main.fragment_welcome.tvPage
 
 /**
  * @author by linecy
  */
 class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
+  private var message: String? = null
 
   companion object {
     fun newInstance(page: CharSequence?): WelcomeFragment {
@@ -32,14 +33,29 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
-    val welcomeViewModule = ViewModelProviders.of(this, mViewModelFactory).get(
-        WelcomeViewModel::class.java)
-    fBinding.tvPage.text = arguments.getCharSequence("page")
+    message = arguments.getString("page")
+    tvPage.text = message
+    tvPage.start()
+
+    btnSkip.setOnClickListener({
+      val preferences = activity.getSharedPreferences("my_copy", Context.MODE_PRIVATE)
+      preferences.edit().putBoolean("lunch", true).apply()
+      activity.startActivity(Intent(activity, MainActivity::class.java))
+      activity.finish()
+    })
   }
 
-  fun onSkip(v: View) {
-    activity.startActivity(Intent(activity, MainActivity::class.java))
-    activity.finish()
+  override fun setUserVisibleHint(isVisibleToUser: Boolean) {
+    super.setUserVisibleHint(isVisibleToUser)
+    if (isVisibleToUser) {
+      if (null != tvPage) {
+        tvPage.start()
+      }
+    } else {
+      if (null != tvPage) {
+        tvPage.stop()
+      }
+    }
   }
 
 }

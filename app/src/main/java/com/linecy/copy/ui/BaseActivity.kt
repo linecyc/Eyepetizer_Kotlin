@@ -46,8 +46,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatAc
 
 
   override fun onCreate(savedInstanceState: Bundle?) {
-    super.onCreate(savedInstanceState)
     AndroidInjection.inject(this)
+    super.onCreate(savedInstanceState)
     init()
     onInitView(savedInstanceState)
   }

@@ -19,7 +19,7 @@ import javax.inject.Inject
 /**
  * @author by linecy
  */
-class HomeViewModel @Inject constructor(application: Application,
+class RecommendViewModel @Inject constructor(application: Application,
     private val repository: HomeRepository) : AndroidViewModel(application), LifeEventCallback {
 
 

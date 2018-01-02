@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel
 import com.linecy.copy.mvvm.ViewModelKey
 import com.linecy.copy.mvvm.viewmodel.FindViewModel
 import com.linecy.copy.mvvm.viewmodel.WelcomeViewModel
-import com.linecy.copy.mvvm.viewmodel.HomeViewModel
+import com.linecy.copy.mvvm.viewmodel.RecommendViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -22,8 +22,8 @@ import dagger.multibindings.IntoMap
 
   @Binds
   @IntoMap
-  @ViewModelKey(HomeViewModel::class)
-  abstract fun bindHomeViewModel(homeViewModel: HomeViewModel): ViewModel
+  @ViewModelKey(RecommendViewModel::class)
+  abstract fun bindHomeViewModel(recommendViewModel: RecommendViewModel): ViewModel
 
 
   @Binds

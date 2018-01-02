@@ -19,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         app:tabIndicatorColor="@color/primary_color_dark"
-        app:tabIndicatorHeight="2dp"
+        app:tabIndicatorHeight="0dp"
         app:tabSelectedTextColor="@color/primary_color_dark"
         app:tabTextColor="@color/text_primary"
         />
