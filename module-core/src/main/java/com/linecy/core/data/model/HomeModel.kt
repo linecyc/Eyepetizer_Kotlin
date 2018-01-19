@@ -1,6 +1,13 @@
 package com.linecy.core.data.model
 
+import android.os.Parcel
+import android.os.Parcelable
+
 /**
+ *
+ * Type is not directly supported by 'Parcelize'.
+ * Annotate the parameter type with '@RawValue' if you want it to be serialized using 'writeValue()'
+ *
  * @author by linecy
  */
 data class HomeModel(var itemList: List<ItemList>?,
@@ -13,30 +20,42 @@ data class HomeModel(var itemList: List<ItemList>?,
     var dialog: Any?,
     var topIssue: Any?,
     var refreshCount: Int,
-    var lastStartId: Int) {
+    var lastStartId: Int) : Parcelable {
+  constructor(source: Parcel) : this(
+      ArrayList<ItemList>().apply { source.readList(this, ItemList::class.java.classLoader) },
+      source.readInt(),
+      source.readInt(),
+      source.readString(),
+      1 == source.readInt(),
+      source.readLong(),
+      source.readLong(),
+      source.readValue(Any::class.java.classLoader),
+      source.readValue(Any::class.java.classLoader),
+      source.readInt(),
+      source.readInt()
+  )
 
-  data class ItemList(var type: String?, var data: Data?, var tag: Any?, var id: Int) {
+  override fun describeContents() = 0
 
-    data class Data(var dataType: String?, var id: Int, var title: String?, var slogan: String?,
-        var description: String?, var image: String?, var provider: Provider?,
-        var category: String?,
-        var actionUrl: String?,
-        var adTrack: Any?, var isShade: Boolean,
-        var label: Any?, var labelList: Any?, var header: Any?,
-        var duration: Long?, var playUrl: String, var cover: Cover?,
-        var author: Author?,
-        var releaseTime: Long?, var consumption: Consumption?, var campaign: Any?,
-        var waterMarks: Any?) {
+  override fun writeToParcel(dest: Parcel, flags: Int) = with(dest) {
+    writeList(itemList)
+    writeInt(count)
+    writeInt(total)
+    writeString(nextPageUrl)
+    writeInt((if (adExist) 1 else 0))
+    writeLong(date)
+    writeLong(nextPublishTime)
+    writeValue(dialog)
+    writeValue(topIssue)
+    writeInt(refreshCount)
+    writeInt(lastStartId)
+  }
 
-      data class Provider(var name: String?, var alias: String?, var icon: String?)
-      data class Cover(var feed: String?, var detail: String?,
-          var blurred: String?, var sharing: String?, var homepage: String?)
-
-      data class Consumption(var collectionCount: Int, var shareCount: Int,
-          var replyCount: Int)
-
-      data class Author(var id: Int, var icon: String, var name: String?, var description: String?,
-          var link: String?)
+  companion object {
+    @JvmField
+    val CREATOR: Parcelable.Creator<HomeModel> = object : Parcelable.Creator<HomeModel> {
+      override fun createFromParcel(source: Parcel): HomeModel = HomeModel(source)
+      override fun newArray(size: Int): Array<HomeModel?> = arrayOfNulls(size)
     }
   }
 }

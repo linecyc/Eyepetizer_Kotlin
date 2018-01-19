@@ -34,9 +34,12 @@
   <dimen name="padding_extreme_small">2dip</dimen>
 
   <dimen name="divider">1dp</dimen>
+  <dimen name="indicator">2dp</dimen>
 
 
+  <dimen name="font_extra_small">10sp</dimen>
   <dimen name="font_smallest">12sp</dimen>
+  <dimen name="font_smaller">14sp</dimen>
   <dimen name="font_small">16sp</dimen>
   <dimen name="font_normal">18sp</dimen>
   <dimen name="font_middle">20sp</dimen>

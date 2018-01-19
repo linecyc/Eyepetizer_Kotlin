@@ -12,13 +12,14 @@ import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.home.adapter.TabAdapter.ViewHolder
 import com.linecy.copy.ui.home.listener.OnTabChangedListener
+import com.linecy.core.data.model.TabModel
 
 /**
  * @author by linecy
  */
 class TabAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
 
-  private val lists = ArrayList<String>()
+  private val lists = ArrayList<TabModel>()
   private val inflater: LayoutInflater = LayoutInflater.from(context)
   private var selectPosition: Int = 1
   private var onTabChangedListener: OnTabChangedListener? = null
@@ -52,7 +53,7 @@ class TabAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
       }
     }
 
-    fun bindData(tab: String, position: Int) {
+    fun bindData(tab: TabModel, position: Int) {
       itemPosition = position
       if (position == selectPosition) {
         itemTabName.typeface = Typeface.DEFAULT_BOLD
@@ -69,7 +70,7 @@ class TabAdapter(context: Context) : RecyclerView.Adapter<ViewHolder>() {
   }
 
 
-  fun refreshData(list: List<String>?) {
+  fun refreshData(list: List<TabModel>?) {
     this.lists.clear()
     if (list != null && list.isNotEmpty()) {
       this.lists.addAll(list)

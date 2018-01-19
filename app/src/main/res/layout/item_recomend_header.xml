@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+    <variable
+        name="headerData"
+        type="com.linecy.core.data.model.ItemList"
+        />
+  </data>
+
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:clipChildren="false"
+      android:orientation="vertical"
+      android:paddingLeft="@dimen/padding_normal"
+      android:paddingBottom="@dimen/padding_normal"
+      android:paddingTop="@dimen/padding_middle"
+      >
+    <TextView
+        android:textColor="@color/text_secondary"
+        android:textSize="@dimen/font_small"
+        tools:text="- Jan. 18, Brunch -"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{headerData.data.text}"
+        />
+    <TextView
+        android:id="@+id/bannerTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawableEnd="@drawable/ic_action_more_arrow_dark"
+        android:drawableRight="@drawable/ic_action_more_arrow_dark"
+        android:text="@string/recommend_header"
+        android:textColor="@color/text_primary"
+        android:textSize="@dimen/font_largest"
+        android:textStyle="bold"
+        />
+  </LinearLayout>
+</layout>

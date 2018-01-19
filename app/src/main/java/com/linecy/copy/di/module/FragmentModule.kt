@@ -1,6 +1,7 @@
 package com.linecy.copy.di.module
 
 import com.linecy.copy.ui.EmptyFragment
+import com.linecy.copy.ui.detail.fragment.AuthorFragment
 import com.linecy.copy.ui.home.fragment.FindFragment
 import com.linecy.copy.ui.home.fragment.HomeFragment
 import com.linecy.copy.ui.home.fragment.RecommendFragment
@@ -13,10 +14,10 @@ import dagger.android.ContributesAndroidInjector
  */
 @Module abstract class FragmentModule {
 
-  @ContributesAndroidInjector(modules = [(FindModule::class)])
+  @ContributesAndroidInjector(modules = [(HomeModule::class)])
   abstract fun contributeHomeFragment(): HomeFragment
 
-  @ContributesAndroidInjector(modules = [(FindModule::class)])
+  @ContributesAndroidInjector(modules = [(HomeModule::class)])
   abstract fun contributeFindFragment(): FindFragment
 
 
@@ -29,5 +30,8 @@ import dagger.android.ContributesAndroidInjector
 
   @ContributesAndroidInjector
   abstract fun contributeEmptyFragment(): EmptyFragment
+
+  @ContributesAndroidInjector
+  abstract fun contributeAuthor(): AuthorFragment
 
 }

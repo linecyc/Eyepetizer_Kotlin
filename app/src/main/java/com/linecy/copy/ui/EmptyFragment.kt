@@ -2,8 +2,8 @@ package com.linecy.copy.ui
 
 import android.databinding.ViewDataBinding
 import android.os.Bundle
-import android.text.TextUtils
 import com.linecy.copy.R
+import com.linecy.core.data.model.TabModel
 import kotlinx.android.synthetic.main.fragment_empty.textView
 
 /**
@@ -14,10 +14,10 @@ class EmptyFragment : BaseFragment<ViewDataBinding>() {
 
   companion object {
     private val EXTRA_DATA = "extra_data"
-    fun newInstance(string: String): EmptyFragment {
+    fun newInstance(tabModel: TabModel): EmptyFragment {
       val fragment = EmptyFragment()
       val bundle = Bundle()
-      bundle.putString(EXTRA_DATA, string)
+      bundle.putParcelable(EXTRA_DATA, tabModel)
       fragment.arguments = bundle
       return fragment
     }
@@ -28,9 +28,9 @@ class EmptyFragment : BaseFragment<ViewDataBinding>() {
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
-    val string = arguments.getString(EXTRA_DATA)
-    if (!TextUtils.isEmpty(string)) {
-      textView.text = string
+    val tabModel: TabModel? = arguments?.getParcelable(EXTRA_DATA)
+    if (null != tabModel) {
+      textView.text = tabModel.description
     }
   }
 

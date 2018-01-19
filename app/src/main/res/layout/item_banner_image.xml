@@ -5,7 +5,11 @@
   <data>
     <variable
         name="bannerItem"
-        type="com.linecy.core.data.model.HomeModel.ItemList"
+        type="com.linecy.core.data.model.ItemList"
+        />
+    <variable
+        name="eventHandling"
+        type="com.linecy.copy.ui.home.listener.EventHandling"
         />
   </data>
 
@@ -14,8 +18,10 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:orientation="vertical"
+      tools:ignore="ContentDescription"
       >
     <ImageView
+        android:onClick="@{(v) -> eventHandling.onBannerClick(v, bannerItem)}"
         android:id="@+id/bannerImage"
         android:layout_width="match_parent"
         android:layout_height="180dp"
@@ -32,6 +38,7 @@
         android:layout_marginRight="@dimen/margin_extra_small"
         android:layout_marginTop="@dimen/margin_normal"
         android:gravity="center_vertical"
+        android:onClick="@{(v) -> eventHandling.onBannerAuthorClick(v, bannerItem)}"
         android:orientation="horizontal"
         >
 
@@ -75,6 +82,7 @@
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:src="@drawable/ic_action_share_grey"
+          android:onClick="@{(v) -> eventHandling.onBannerShareClick(v, bannerItem)}"
           />
     </LinearLayout>
     <View

@@ -10,23 +10,26 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import com.linecy.copy.BR
 import com.linecy.copy.R
-import com.linecy.copy.ui.home.listener.OnBannerTitleClickListener
+import com.linecy.copy.ui.home.listener.OnHeaderClickListener
 import com.linecy.copy.ui.home.listener.OnItemClickListener
 import com.linecy.core.data.model.HomeModel
+import com.linecy.core.data.model.ItemList
 
 
 class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-  private var list = ArrayList<HomeModel.ItemList>()
-  private var banner = ArrayList<HomeModel.ItemList>()
+  private var list = ArrayList<ItemList>()
+  private var banner = ArrayList<ItemList>()
+  private var headerData: ItemList? = null
   private val inflater: LayoutInflater = LayoutInflater.from(context)
-  private val typeBanner = 0
-  private val typeList = 1
-  private var onItemClickListener: OnItemClickListener<HomeModel.ItemList>? = null
-  private var onBannerTitleClickListener: OnBannerTitleClickListener? = null
+  private val typeHeader = 0
+  private val typeBanner = 1
+  private val typeList = 2
+  private var onItemClickListener: OnItemClickListener<ItemList>? = null
+  private var onHeaderClickListener: OnHeaderClickListener? = null
   override fun getItemCount(): Int {
     return if (list.size > 0) {
-      list.size + 1
+      list.size + 2
     } else {
       0
     }
@@ -34,31 +37,39 @@ class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.Vie
 
 
   override fun getItemViewType(position: Int): Int {
-    return if (position == 0) {
-      typeBanner
-    } else {
-      typeList
+    return when (position) {
+      0 -> typeHeader
+      1 -> typeBanner
+      else -> typeList
     }
   }
 
   override fun onBindViewHolder(holder: RecyclerView.ViewHolder?, position: Int) {
     when (getItemViewType(position)) {
+      typeHeader -> if (holder is HeaderViewHolder) {
+        holder.bindData(headerData)
+      }
       typeBanner -> if (holder is BannerViewHolder) {
         holder.bindData(banner)
       }
       else -> if (holder is ViewHolder) {
-        holder.bindData(position - 1, list[position - 1])
+        holder.bindData(position - 2, list[position - 2])
       }
     }
   }
 
   override fun onCreateViewHolder(parent: ViewGroup?, viewType: Int): RecyclerView.ViewHolder {
     return when (viewType) {
+      typeHeader ->
+        HeaderViewHolder(
+            DataBindingUtil.inflate(inflater, R.layout.item_recomend_header, parent, false),
+            onHeaderClickListener)
+
       typeBanner ->
         BannerViewHolder(
-            DataBindingUtil.inflate(inflater, R.layout.item_banner, parent, false),
-            onBannerTitleClickListener)
-      else -> ViewHolder(DataBindingUtil.inflate(inflater, R.layout.item_home, parent,
+            DataBindingUtil.inflate(inflater, R.layout.item_banner, parent, false))
+
+      else -> ViewHolder(DataBindingUtil.inflate(inflater, R.layout.item_style1, parent,
           false))
     }
   }
@@ -67,7 +78,7 @@ class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.Vie
   inner class ViewHolder(private val dataBinding: ViewDataBinding) : RecyclerView.ViewHolder(
       dataBinding.root) {
     private var p = 0
-    private var data: HomeModel.ItemList? = null
+    private var data: ItemList? = null
 
     init {
       dataBinding.root.findViewById<ImageView>(R.id.ivCover).setOnClickListener(
@@ -76,10 +87,10 @@ class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.Vie
           { onItemClickListener?.onAuthorItemClick(p, data) })
     }
 
-    fun bindData(position: Int, itemListModel: HomeModel.ItemList) {
+    fun bindData(position: Int, itemListModel: ItemList) {
       this.p = position
       this.data = itemListModel
-      dataBinding.setVariable(BR.homeAdapterItem, itemListModel)
+      dataBinding.setVariable(BR.itemStyle1, itemListModel)
       dataBinding.executePendingBindings()
     }
   }
@@ -95,24 +106,35 @@ class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.Vie
     this.banner.clear()
 
     if (homeModel?.itemList != null) {
-      if (homeModel.count > 5) {
-        (homeModel.itemList!!.subList(0, 5))
-            .filter { it.type.equals("video") }
-            .forEach { this.banner.add(it) }
+      val temp = ArrayList<ItemList>()
+
+      if (homeModel.count > 5 && null != homeModel.itemList) {
+        for (i in 0 until homeModel.count) {
+          when (homeModel.itemList!![i].type) {
+
+            "video" -> temp.add(homeModel.itemList!![i])
+
+            "textHeader" -> headerData = homeModel.itemList!![i]
+          }
+        }
       }
-      homeModel.itemList!!.subList(5, homeModel.count)
-          .filter { it.type.equals("video") }
-          .forEach { this.list.add(it) }
+
+      if (temp.size > 5) {
+        this.banner.addAll(temp.subList(0, 5))
+        this.list.addAll(temp.subList(5, temp.size))
+      } else {
+        this.list.addAll(temp)
+      }
     }
     notifyDataSetChanged()
   }
 
 
-  fun setOnItemClickListener(l: OnItemClickListener<HomeModel.ItemList>) {
+  fun setOnItemClickListener(l: OnItemClickListener<ItemList>) {
     this.onItemClickListener = l
   }
 
-  fun setOnBannerTitleClickListener(l: OnBannerTitleClickListener) {
-    this.onBannerTitleClickListener = l
+  fun setOnHeaderClickListener(l: OnHeaderClickListener) {
+    this.onHeaderClickListener = l
   }
 }

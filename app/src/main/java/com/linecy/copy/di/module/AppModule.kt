@@ -12,7 +12,7 @@ import javax.inject.Singleton
  * @author by linecy
  */
 @Module(
-    includes = arrayOf(NetworkModule::class, FindModule::class))
+    includes = arrayOf(NetworkModule::class, HomeModule::class))
 class AppModule(private val application: CopyApplication) {
 
   @Provides

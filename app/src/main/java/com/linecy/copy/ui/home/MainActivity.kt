@@ -10,24 +10,12 @@ import com.linecy.copy.databinding.ActivityMainBinding
 import com.linecy.copy.ui.BaseActivity
 import com.linecy.copy.ui.home.fragment.FindFragment
 import com.linecy.copy.ui.home.fragment.HomeFragment
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.support.HasSupportFragmentInjector
-import javax.inject.Inject
 
 
 /**
  * @author by linecy
  */
-class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>(), HasSupportFragmentInjector {
-
-
-  @Inject
-  lateinit var fragmentInjector: DispatchingAndroidInjector<Fragment>
-
-  override fun supportFragmentInjector(): AndroidInjector<Fragment> {
-    return fragmentInjector
-  }
+class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>() {
 
   override fun layoutResId(): Int {
     return R.layout.activity_main

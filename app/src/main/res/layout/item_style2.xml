@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <data>
+    <variable
+        name="itemStyle2"
+        type="com.linecy.core.data.model.ItemList"
+        />
+
+  </data>
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:background="@color/white"
+      android:orientation="horizontal"
+      android:padding="@dimen/padding_normal"
+      >
+    <ImageView
+        android:id="@+id/ivCover"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        android:scaleType="fitXY"
+        app:loadRoundPicture="@{itemStyle2.data.cover.feed}"
+        />
+    <LinearLayout
+        android:id="@+id/layoutAuthor"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        >
+      <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:ellipsize="end"
+          android:maxLines="2"
+          android:text="@{itemStyle2.data.title}"
+          android:textColor="@color/text_primary"
+          android:textSize="@dimen/font_small"
+          android:textStyle="bold"
+          tools:text="泰国反思广告：我不是「包租婆」"
+          />
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:orientation="horizontal"
+          >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:text="@{'#'+itemStyle2.data.category+'/'+itemStyle2.data.author.name}"
+            android:textColor="@color/text_secondary"
+            android:textSize="@dimen/font_smallest"
+            tools:text="#预告 / 开眼精选"
+            />
+        <ImageView
+            android:id="@+id/ivShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_action_share_grey"
+            />
+      </LinearLayout>
+
+
+    </LinearLayout>
+
+
+  </LinearLayout>
+
+</layout>

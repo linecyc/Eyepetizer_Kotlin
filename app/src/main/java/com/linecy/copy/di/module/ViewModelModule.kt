@@ -2,9 +2,10 @@ package com.linecy.copy.di.module
 
 import android.arch.lifecycle.ViewModel
 import com.linecy.copy.mvvm.ViewModelKey
+import com.linecy.copy.mvvm.viewmodel.AuthorDetailViewModel
 import com.linecy.copy.mvvm.viewmodel.FindViewModel
-import com.linecy.copy.mvvm.viewmodel.WelcomeViewModel
 import com.linecy.copy.mvvm.viewmodel.RecommendViewModel
+import com.linecy.copy.mvvm.viewmodel.WelcomeViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap
@@ -31,4 +32,9 @@ import dagger.multibindings.IntoMap
   @ViewModelKey(WelcomeViewModel::class)
   abstract fun bindWelcomeViewModel(welcomeViewModel: WelcomeViewModel): ViewModel
 
+
+  @Binds
+  @IntoMap
+  @ViewModelKey(AuthorDetailViewModel::class)
+  abstract fun bindAuthorDetailViewModel(authorDetailViewModel: AuthorDetailViewModel): ViewModel
 }

@@ -3,6 +3,9 @@
   <color name="primary_color">#ff1cd39b</color>
   <color name="primary_color_dark">#ff00cd66</color>
   <color name="white">#ffffff</color>
+  <color name="black">#ff000000</color>
+  <color name="white_button_pressed">#e0e0e0</color>
+
 
   <color name="text_dark_gray">#ff585858</color>
   <color name="background">#f7f7f7</color>

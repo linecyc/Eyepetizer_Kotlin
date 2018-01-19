@@ -4,8 +4,8 @@
     >
   <data>
     <variable
-        name="homeAdapterItem"
-        type="com.linecy.core.data.model.HomeModel.ItemList"
+        name="itemStyle1"
+        type="com.linecy.core.data.model.ItemList"
         />
 
   </data>
@@ -21,7 +21,7 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:scaleType="fitXY"
-        app:loadRoundPicture="@{homeAdapterItem.data.cover.feed}"
+        app:loadRoundPicture="@{itemStyle1.data.cover.feed}"
 
         />
     <LinearLayout
@@ -37,7 +37,7 @@
           android:layout_width="35dp"
           android:layout_height="35dp"
           android:layout_gravity="center"
-          app:loadCirclePicture="@{homeAdapterItem.data.author.icon}"
+          app:loadCirclePicture="@{itemStyle1.data.author.icon}"
           tools:src="@mipmap/ic_launcher"
           />
       <LinearLayout
@@ -51,17 +51,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:maxLines="1"
-            android:text="@{homeAdapterItem.data.title}"
+            android:text="@{itemStyle1.data.title}"
             android:textColor="@color/text_primary"
             android:textSize="@dimen/font_normal"
             android:textStyle="bold"
             tools:text="泰国反思广告：我不是「包租婆」"
             />
         <TextView
+            android:maxLines="1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="@dimen/padding_smallest"
-            android:text="@{homeAdapterItem.data.author.name+'/'+homeAdapterItem.data.author.description}"
+            android:text="@{itemStyle1.data.author.name+'/'+itemStyle1.data.author.description}"
             android:textColor="@color/text_secondary"
             android:textSize="@dimen/font_small"
             tools:text="泰式反转，结局也许不是你想的那样"

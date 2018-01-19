@@ -2,16 +2,9 @@
 <layout>
 
   <data>
-
-
-    <import type="android.view.View"/>
     <variable
         name="homeTab"
-        type="String"
-        />
-    <variable
-        name="v"
-        type="View"
+        type="com.linecy.core.data.model.TabModel"
         />
   </data>
 
@@ -27,7 +20,7 @@
         android:id="@+id/itemTabName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{homeTab}"
+        android:text="@{homeTab.category}"
         />
   </LinearLayout>
 </layout>

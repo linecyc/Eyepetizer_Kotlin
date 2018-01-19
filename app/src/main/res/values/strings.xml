@@ -3,6 +3,8 @@
   <string name="title_activity_base">BaseActivity</string>
 
 
+  <string name="split">&#032;/&#032;</string>
+  <string name="category_flag">#</string>
   <!--error empty message-->
 
   <string name="error_message">数据加载异常\n点击重试~</string>
@@ -12,4 +14,26 @@
   <!--welcome -->
   <string name="skip">skip>></string>
 
+  <string name="tab_title">置顶分类排序</string>
+
+
+  <!--recommend-->
+  <string name="recommend_header">开眼今日编辑精选</string>
+
+
+  <!--字符串拼接不能出现中文，不然报错 ：解决3 字节的 UTF-8 序列的字节 3 无效-->
+  <!--author detail-->
+  <string name="author_focus">+关注</string>
+  <string name="author_like_num">\n被喜欢</string>
+  <string name="author_shared_num">\n被分享</string>
+  <string name="author_video_num">\n作品数</string>
+  <string name="author_focus_num">2333&#032;被关注</string>
+
+  <string name="author_home">首页</string>
+  <string name="author_video">视频</string>
+  <string name="author_dynamic">动态</string>
+
+  <string name="latest_update">最近更新</string>
+  <string name="latest_popular">最受欢迎</string>
+  <string name="show_video">\n发布了视频：</string>
 </resources>

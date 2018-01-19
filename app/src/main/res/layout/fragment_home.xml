@@ -13,6 +13,7 @@
         android:orientation="horizontal"
         >
       <ImageView
+          android:id="@+id/ivTabController"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:background="@drawable/ic_menu"
@@ -29,6 +30,7 @@
           android:background="@color/background"
           />
       <ImageView
+          android:id="@+id/ivSearchController"
           android:layout_width="wrap_content"
           android:layout_height="wrap_content"
           android:background="@drawable/ic_action_search"

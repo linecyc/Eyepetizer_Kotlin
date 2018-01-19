@@ -4,7 +4,7 @@
     >
 
   <data>
-    <import type="com.linecy.core.data.model.HomeModel.ItemList"/>
+    <import type="com.linecy.core.data.model.ItemList"/>
     <variable
         name="bannerList"
         type="java.util.List&lt;ItemList>"
@@ -18,20 +18,7 @@
       android:clipChildren="false"
       android:orientation="vertical"
       >
-    <TextView
-        android:id="@+id/bannerTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:drawableRight="@drawable/ic_action_more_arrow_dark"
-        android:onClick="gotoDaily"
-        android:paddingBottom="@dimen/padding_normal"
-        android:paddingLeft="@dimen/padding_normal"
-        android:paddingTop="@dimen/padding_middle"
-        android:text="开眼今日编辑精选"
-        android:textColor="@color/text_primary"
-        android:textSize="@dimen/font_largest"
-        android:textStyle="bold"
-        />
+
     <android.support.v4.view.ViewPager
         android:id="@+id/banner"
         android:layout_width="match_parent"

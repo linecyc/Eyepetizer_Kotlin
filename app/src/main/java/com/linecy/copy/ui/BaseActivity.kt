@@ -77,6 +77,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatAc
     mIbHomeAsUp = mBaseBinding?.root?.findViewById(R.id.containerUp)
     mTvTitle = mBaseBinding?.root?.findViewById(R.id.containerTitle)
 
+    mIbHomeAsUp?.setOnClickListener(this)
+
   }
 
   fun <V : View> lazyInitView(id: Int): Lazy<V> = lazy {
@@ -95,9 +97,8 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatAc
 
   override fun onClick(p0: View?) {
     when (p0?.id) {
-    /*R.id.containerup -> {
-      finish()
-    }*/
+      R.id.containerUp -> finish()
+
     }
   }
 

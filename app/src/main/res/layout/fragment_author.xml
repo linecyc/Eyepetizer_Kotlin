@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+  <!--<data>-->
+  <!--<import type="android.databinding.ObservableList"/>-->
+  <!--<import type="com.linecy.core.data.model.ItemList"/>-->
+  <!--<variable name="authorDetail" type="ObservableList&lt;ItemList&gt;"/>-->
+
+  <!--</data>-->
+
+  <data>
+    <variable
+        name="authorDetail"
+        type="com.linecy.copy.mvvm.viewmodel.AuthorDetailViewModel"
+        />
+  </data>
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:orientation="vertical"
+      >
+    <android.support.v7.widget.RecyclerView
+        android:background="@color/white"
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:loadAdapterData="@{authorDetail.observableList}"
+        />
+  </LinearLayout>
+</layout>
