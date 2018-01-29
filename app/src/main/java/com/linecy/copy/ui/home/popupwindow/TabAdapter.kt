@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.home.popupwindow.TabAdapter.ViewHolder
-import com.linecy.core.data.model.TabModel
+import com.linecy.eyepetizer.data.model.TabModel
 
 /**
  * @author by linecy

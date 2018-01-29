@@ -15,15 +15,20 @@ import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.drawable.GlideDrawable
+import com.bumptech.glide.request.animation.GlideAnimation
 import com.bumptech.glide.request.target.BitmapImageViewTarget
+import com.bumptech.glide.request.target.SimpleTarget
+import com.bumptech.glide.request.target.ViewTarget
 import com.linecy.copy.R
 import com.linecy.copy.mvvm.ViewStyle
 import com.linecy.copy.ui.banner.BannerAdapter
-import com.linecy.copy.ui.detail.adapter.AuthorHomeAdapter
+import com.linecy.copy.ui.detail.adapter.AuthorDetailAdapter
 import com.linecy.copy.ui.home.adapter.RecommendAdapter
 import com.linecy.copy.ui.misc.ViewContainer
-import com.linecy.core.data.model.HomeModel
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.HomeModel
+import com.linecy.eyepetizer.data.model.ItemList
+
 
 /**
  * 自定义dataBinding属性需要标记为静态方法，
@@ -89,6 +94,44 @@ object BindingUIUtil {
         }
       }
       Glide.with(imageView.context).load(url).asBitmap().centerCrop().into(target)
+    }
+  }
+
+
+  @JvmStatic
+  @BindingAdapter("setBackground")
+  fun setBackground(view: View, url: String?) {
+    val target = object : ViewTarget<View, GlideDrawable>(view) {
+      override fun onResourceReady(resource: GlideDrawable?,
+          glideAnimation: GlideAnimation<in GlideDrawable>?) {
+        this.view.background = resource?.current
+      }
+
+    }
+    Glide.with(view.context).load(url).into(target)
+  }
+
+  @JvmStatic
+  @BindingAdapter("setRoundBackground")
+  fun setRoundBackground(view: View, url: String?) {
+    if (!TextUtils.isEmpty(url)) {
+
+      val target = object : SimpleTarget<Bitmap>() {
+        override fun onResourceReady(resource: Bitmap?,
+            glideAnimation: GlideAnimation<in Bitmap>?) {
+          val roundDrawable = RoundedBitmapDrawableFactory.create(view.resources, resource)
+          val r = if (view.width > view.height) {
+            view.height / 2f
+          } else {
+            view.width / 2f
+          }
+          roundDrawable.cornerRadius = r
+          roundDrawable.setAntiAlias(true)
+          view.background = roundDrawable
+        }
+
+      }
+      Glide.with(view.context).load(url).asBitmap().centerCrop().into(target)
     }
   }
 
@@ -170,7 +213,7 @@ object BindingUIUtil {
   @JvmStatic
   @BindingAdapter("loadAdapterData")
   fun setAdapterData(listView: RecyclerView, list: List<ItemList>?) {
-    val adapter = listView.adapter as AuthorHomeAdapter?
+    val adapter = listView.adapter as AuthorDetailAdapter?
     adapter?.refreshData(list)
   }
 }

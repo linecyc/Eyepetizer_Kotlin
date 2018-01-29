@@ -4,7 +4,7 @@ import android.app.Application
 import android.arch.lifecycle.AndroidViewModel
 import android.content.Context
 import android.databinding.ObservableBoolean
-import com.linecy.core.repository.HomeRepository
+import com.linecy.eyepetizer.repository.HomeRepository
 import rx.subscriptions.CompositeSubscription
 import javax.inject.Inject
 

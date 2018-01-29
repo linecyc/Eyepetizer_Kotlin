@@ -6,7 +6,7 @@ import com.linecy.copy.di.module.AppModule
 import com.linecy.copy.di.module.FragmentModule
 import com.linecy.copy.di.module.ViewModelFactoryModule
 import com.linecy.copy.di.module.ViewModelModule
-import com.linecy.core.utils.ActivityManager
+import com.linecy.eyepetizer.utils.ActivityManager
 import dagger.Component
 import dagger.android.AndroidInjectionModule
 import dagger.android.support.AndroidSupportInjectionModule

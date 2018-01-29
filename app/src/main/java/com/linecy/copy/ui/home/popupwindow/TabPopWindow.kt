@@ -14,7 +14,7 @@ import android.widget.PopupWindow
 import android.widget.TextView
 import com.linecy.copy.R
 import com.linecy.copy.ui.misc.ItemTouchCallback
-import com.linecy.core.data.model.TabModel
+import com.linecy.eyepetizer.data.model.TabModel
 
 /**
  * @author by linecy.
@@ -35,7 +35,7 @@ class TabPopWindow(context: Context) : PopupWindow() {
     val containerUp = contentView.findViewById<ImageButton>(R.id.containerUp)
 
     title.setText(R.string.tab_title)
-    containerUp.setImageResource(R.drawable.ic_back)
+    containerUp.setImageResource(R.drawable.ic_clear)
     containerUp.visibility = View.VISIBLE
     containerUp.setOnClickListener { dismiss() }
     width = ViewGroup.LayoutParams.MATCH_PARENT

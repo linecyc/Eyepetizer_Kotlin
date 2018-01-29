@@ -7,7 +7,7 @@
   <data>
     <variable
         name="itemStyle2"
-        type="com.linecy.core.data.model.ItemList"
+        type="com.linecy.eyepetizer.data.model.ItemList"
         />
 
   </data>
@@ -15,7 +15,7 @@
   <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:background="@color/white"
+      tools:background="@color/white"
       android:orientation="horizontal"
       android:padding="@dimen/padding_normal"
       >

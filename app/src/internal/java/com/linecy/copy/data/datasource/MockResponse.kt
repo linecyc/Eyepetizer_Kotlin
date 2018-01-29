@@ -1,9 +1,9 @@
 package com.linecy.copy.data.datasource
 
-import com.linecy.core.data.model.HomeModel
-import com.linecy.core.data.model.ItemList
-import com.linecy.core.data.model.TabModel
-import com.linecy.core.utils.MoshiUtils
+import com.linecy.eyepetizer.data.model.HomeModel
+import com.linecy.eyepetizer.data.model.ItemList
+import com.linecy.eyepetizer.data.model.TabModel
+import com.linecy.eyepetizer.utils.MoshiUtils
 
 /**
  * @author by linecy.

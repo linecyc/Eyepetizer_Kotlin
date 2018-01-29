@@ -1,7 +1,7 @@
 package com.linecy.copy.data.datasource
 
-import com.linecy.core.data.model.HomeModel
-import com.linecy.core.repository.HomeRepository
+import com.linecy.eyepetizer.data.model.HomeModel
+import com.linecy.eyepetizer.repository.HomeRepository
 import rx.Observable
 import java.util.concurrent.TimeUnit
 import javax.inject.Inject

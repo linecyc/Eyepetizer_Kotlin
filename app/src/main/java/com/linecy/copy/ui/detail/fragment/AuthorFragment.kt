@@ -7,8 +7,8 @@ import com.linecy.copy.R
 import com.linecy.copy.databinding.FragmentAuthorBinding
 import com.linecy.copy.mvvm.viewmodel.AuthorDetailViewModel
 import com.linecy.copy.ui.BaseFragment
-import com.linecy.copy.ui.detail.adapter.AuthorHomeAdapter
-import com.linecy.core.data.model.ItemList
+import com.linecy.copy.ui.detail.adapter.AuthorDetailAdapter
+import com.linecy.eyepetizer.data.model.ItemList
 import kotlinx.android.synthetic.main.fragment_author.recyclerView
 
 /**
@@ -57,7 +57,7 @@ class AuthorFragment : BaseFragment<FragmentAuthorBinding>() {
     recyclerView.layoutManager = LinearLayoutManager(context)
 
     if (null != type) {
-      recyclerView.adapter = AuthorHomeAdapter(context, type)
+      recyclerView.adapter = AuthorDetailAdapter(context, type)
     }
 
     if (null != list) {

@@ -4,7 +4,7 @@
   <data>
     <variable
         name="itemList"
-        type="com.linecy.core.data.model.ItemList"
+        type="com.linecy.eyepetizer.data.model.ItemList"
         />
   </data>
 
@@ -28,7 +28,7 @@
           >
 
         <include
-            layout="@layout/header_author"
+            layout="@layout/header_author_detail"
             android:id="@+id/headerAuthor"
             app:itemList="@{itemList}"
             />

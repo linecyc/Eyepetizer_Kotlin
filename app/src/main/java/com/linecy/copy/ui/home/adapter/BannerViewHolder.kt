@@ -8,7 +8,7 @@ import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.banner.BannerAdapter
 import com.linecy.copy.utils.DensityUtils
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.ItemList
 
 /**
  * @author by linecy

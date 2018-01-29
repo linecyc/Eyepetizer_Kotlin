@@ -3,7 +3,7 @@ package com.linecy.copy.di.module
 import android.app.Application
 import android.content.Context
 import com.linecy.copy.CopyApplication
-import com.linecy.core.utils.ActivityManager
+import com.linecy.eyepetizer.utils.ActivityManager
 import dagger.Module
 import dagger.Provides
 import javax.inject.Singleton

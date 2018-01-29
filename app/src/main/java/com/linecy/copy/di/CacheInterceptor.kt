@@ -2,7 +2,7 @@ package com.linecy.copy.di
 
 import android.content.Context
 import android.util.Log
-import com.linecy.core.utils.NetworkUtils
+import com.linecy.eyepetizer.utils.NetworkUtils
 import okhttp3.CacheControl
 import okhttp3.Interceptor
 import okhttp3.Response

@@ -12,8 +12,8 @@ import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.home.listener.OnHeaderClickListener
 import com.linecy.copy.ui.home.listener.OnItemClickListener
-import com.linecy.core.data.model.HomeModel
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.HomeModel
+import com.linecy.eyepetizer.data.model.ItemList
 
 
 class RecommendAdapter(context: Context) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {

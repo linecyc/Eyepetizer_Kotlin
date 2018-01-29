@@ -3,7 +3,7 @@
 buildscript {
   ext {
     supportVersion = '26.1.0'
-    kotlinVersion = '1.2.10'
+    kotlinVersion = '1.2.21'
     gradleVersion = "3.0.1"
     lifecycleRuntimeVersion = "1.0.3"
     lifecycleVersion = "1.0.0"
@@ -12,7 +12,7 @@ buildscript {
     compileSdkVersion = 26
     buildToolsVersion = '26.0.2'
 
-    minSdkVersion = 14
+    minSdkVersion = 21
     targetSdkVersion = 26
 
 
@@ -60,6 +60,21 @@ buildscript {
 
     glide = 'com.github.bumptech.glide:glide:3.8.0'
     timber = 'com.jakewharton.timber:timber:4.4.0'
+
+    //ijkplayer
+    //# required, enough for most devices.
+    ijkplayer = 'tv.danmaku.ijk.media:ijkplayer-java:0.8.4'
+    ijkplayerArmv7 = 'tv.danmaku.ijk.media:ijkplayer-armv7a:0.8.4'
+
+    //# Other ABIs: optional
+    ijkplayerArmv5 = 'tv.danmaku.ijk.media:ijkplayer-armv5:0.8.4'
+    ijkplayerArm64 = 'tv.danmaku.ijk.media:ijkplayer-arm64:0.8.4'
+    ijkplayerX86 = 'tv.danmaku.ijk.media:ijkplayer-x86:0.8.4'
+    ijkplayerX86_64 = 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.8.4'
+
+    //# ExoPlayer as IMediaPlayer: optional, experimental
+    ijkplayerExo = 'tv.danmaku.ijk.media:ijkplayer-exo:0.8.4'
+
   }
   repositories {
     google()

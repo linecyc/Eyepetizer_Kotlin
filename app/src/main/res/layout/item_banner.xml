@@ -4,7 +4,7 @@
     >
 
   <data>
-    <import type="com.linecy.core.data.model.ItemList"/>
+    <import type="com.linecy.eyepetizer.data.model.ItemList"/>
     <variable
         name="bannerList"
         type="java.util.List&lt;ItemList>"

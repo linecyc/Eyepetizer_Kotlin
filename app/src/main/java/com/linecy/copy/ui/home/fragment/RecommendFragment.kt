@@ -9,6 +9,7 @@ import com.linecy.copy.R
 import com.linecy.copy.databinding.FragmentRecommendBinding
 import com.linecy.copy.mvvm.OnLoadingStateChangedListener
 import com.linecy.copy.mvvm.viewmodel.RecommendViewModel
+import com.linecy.copy.navigation.Navigator.Companion.EXTRA_DATA
 import com.linecy.copy.ui.BaseFragment
 import com.linecy.copy.ui.detail.AuthorDetailActivity
 import com.linecy.copy.ui.detail.VideoDetailActivity
@@ -16,7 +17,7 @@ import com.linecy.copy.ui.home.adapter.RecommendAdapter
 import com.linecy.copy.ui.home.listener.OnHeaderClickListener
 import com.linecy.copy.ui.home.listener.OnItemClickListener
 import com.linecy.copy.ui.misc.ViewContainer
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.ItemList
 import kotlinx.android.synthetic.main.fragment_recommend.recyclerView
 import kotlinx.android.synthetic.main.fragment_recommend.swipeRefreshLayout
 import kotlinx.android.synthetic.main.fragment_recommend.viewContainer
@@ -82,12 +83,14 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
 
 
   override fun onItemClick(position: Int, data: ItemList?) {
-    startActivity(Intent(context, VideoDetailActivity::class.java))
+    val intent = Intent(context, VideoDetailActivity::class.java)
+    intent.putExtra(EXTRA_DATA, data)
+    startActivity(intent)
   }
 
   override fun onAuthorItemClick(position: Int, data: ItemList?) {
     val intent = Intent(context, AuthorDetailActivity::class.java)
-    intent.putExtra(AuthorDetailActivity.EXTRA_DATA, data)
+    intent.putExtra(EXTRA_DATA, data)
     startActivity(intent)
 
   }

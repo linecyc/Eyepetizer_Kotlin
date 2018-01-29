@@ -24,6 +24,11 @@ android {
     versionCode versionMajor * 1000 + versionMinor * 100 + versionPatch * 10 + versionBuild
     versionName "${versionMajor}.${versionMinor}.${versionPatch}.${versionBuild}"
     vectorDrawables.useSupportLibrary = true
+
+    ndk {
+      //设置支持的SO库架构
+      abiFilters 'armeabi', 'armeabi-v7a', 'x86'
+    }
   }
 
   compileOptions {
@@ -134,8 +139,15 @@ dependencies {
   implementation rootProject.ext.retrofitConverterMoshi
   implementation rootProject.ext.timber
   implementation rootProject.ext.glide
+  implementation rootProject.ext.ijkplayer
+  implementation rootProject.ext.ijkplayerArmv7
+  implementation rootProject.ext.ijkplayerArmv5
+  implementation rootProject.ext.ijkplayerArm64
+  implementation rootProject.ext.ijkplayerX86
+  implementation rootProject.ext.ijkplayerX86_64
+  implementation rootProject.ext.ijkplayerExo
 
-  implementation project(':module-core')
+  implementation project(':module-eyepetizer')
 }
 repositories {
   mavenCentral()

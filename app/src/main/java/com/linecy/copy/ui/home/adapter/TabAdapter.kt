@@ -12,7 +12,7 @@ import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.home.adapter.TabAdapter.ViewHolder
 import com.linecy.copy.ui.home.listener.OnTabChangedListener
-import com.linecy.core.data.model.TabModel
+import com.linecy.eyepetizer.data.model.TabModel
 
 /**
  * @author by linecy

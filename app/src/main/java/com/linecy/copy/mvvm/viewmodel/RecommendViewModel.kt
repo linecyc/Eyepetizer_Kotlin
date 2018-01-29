@@ -7,9 +7,9 @@ import com.linecy.copy.R
 import com.linecy.copy.mvvm.LifeEventCallback
 import com.linecy.copy.mvvm.OnLoadingStateChangedListener
 import com.linecy.copy.mvvm.ViewStyle
-import com.linecy.core.EndSubscriber
-import com.linecy.core.data.model.HomeModel
-import com.linecy.core.repository.HomeRepository
+import com.linecy.eyepetizer.EndSubscriber
+import com.linecy.eyepetizer.data.model.HomeModel
+import com.linecy.eyepetizer.repository.HomeRepository
 import rx.Observable
 import rx.android.schedulers.AndroidSchedulers
 import rx.schedulers.Schedulers

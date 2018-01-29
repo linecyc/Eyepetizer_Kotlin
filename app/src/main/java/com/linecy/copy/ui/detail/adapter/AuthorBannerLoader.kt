@@ -9,7 +9,7 @@ import com.linecy.copy.R
 import com.linecy.copy.databinding.ItemBannerAuthorBinding
 import com.linecy.copy.ui.banner.BannerCreator
 import com.linecy.copy.ui.home.listener.EventHandling
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.ItemList
 
 /**
  * @author by linecy.

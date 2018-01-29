@@ -6,6 +6,15 @@
       android:layout_height="match_parent"
       android:orientation="vertical"
       >
-
+    <com.linecy.copy.ui.widget.SimpleIJKVideoPlayer
+        android:id="@+id/videoPlayer"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        />
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/recyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        />
   </LinearLayout>
 </layout>

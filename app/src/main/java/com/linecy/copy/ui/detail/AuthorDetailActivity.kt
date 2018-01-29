@@ -14,9 +14,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import com.linecy.copy.R
 import com.linecy.copy.databinding.ActivityAuthorDetailBinding
+import com.linecy.copy.navigation.Navigator
 import com.linecy.copy.ui.BaseActivity
 import com.linecy.copy.ui.detail.fragment.AuthorFragment
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.ItemList
 import kotlinx.android.synthetic.main.activity_author_detail.appBar
 import kotlinx.android.synthetic.main.activity_author_detail.tabLayout
 import kotlinx.android.synthetic.main.activity_author_detail.toolbar
@@ -35,29 +36,25 @@ class AuthorDetailActivity : BaseActivity<ActivityAuthorDetailBinding, ViewModel
   private var title: String? = null
   private var height: Int = 0
 
-  companion object {
-    const val EXTRA_DATA = "extra_data"
-  }
-
   override fun layoutResId(): Int {
     return R.layout.activity_author_detail
   }
 
   override fun onInitView(savedInstanceState: Bundle?) {
     hideToolBar()
-    val itemList = intent.extras.getParcelable<ItemList>(EXTRA_DATA)
+    val itemList = intent.extras.getParcelable<ItemList>(Navigator.EXTRA_DATA)
     mDataBinding.itemList = itemList
     appBar.addOnOffsetChangedListener(this)
     title = itemList?.data?.author?.name
     val data = ArrayList<ItemList>()
 
-    for(i in 0 until 10){
+    for (i in 0 until 10) {
       data.add(itemList)
     }
     val list = ArrayList<Fragment>()
-    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_HOME,data))
-    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_VIDEO,data))
-    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_DYNAMIC,data))
+    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_HOME, data))
+    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_VIDEO, data))
+    list.add(AuthorFragment.newInstance(AuthorFragment.TYPE_DYNAMIC, data))
     viewPager.adapter = AuthorFragmentAdapter(supportFragmentManager, list)
     viewPager.offscreenPageLimit = list.size
     tabLayout.setupWithViewPager(viewPager)

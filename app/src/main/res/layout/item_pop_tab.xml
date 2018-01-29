@@ -6,7 +6,7 @@
 
     <variable
         name="itemTab"
-        type="com.linecy.core.data.model.TabModel"
+        type="com.linecy.eyepetizer.data.model.TabModel"
         />
   </data>
 

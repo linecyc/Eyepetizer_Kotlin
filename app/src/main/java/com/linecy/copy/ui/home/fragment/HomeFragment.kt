@@ -17,7 +17,7 @@ import com.linecy.copy.ui.EmptyFragment
 import com.linecy.copy.ui.home.adapter.TabAdapter
 import com.linecy.copy.ui.home.listener.OnTabChangedListener
 import com.linecy.copy.ui.home.popupwindow.TabPopWindow
-import com.linecy.core.data.model.TabModel
+import com.linecy.eyepetizer.data.model.TabModel
 import kotlinx.android.synthetic.main.fragment_home.homeViewPager
 import kotlinx.android.synthetic.main.fragment_home.ivSearchController
 import kotlinx.android.synthetic.main.fragment_home.ivTabController

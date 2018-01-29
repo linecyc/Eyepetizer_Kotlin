@@ -3,7 +3,7 @@ package com.linecy.copy.ui
 import android.databinding.ViewDataBinding
 import android.os.Bundle
 import com.linecy.copy.R
-import com.linecy.core.data.model.TabModel
+import com.linecy.eyepetizer.data.model.TabModel
 import kotlinx.android.synthetic.main.fragment_empty.textView
 
 /**

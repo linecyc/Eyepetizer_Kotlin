@@ -6,7 +6,7 @@ import android.widget.TextView
 import com.linecy.copy.BR
 import com.linecy.copy.R
 import com.linecy.copy.ui.home.listener.OnHeaderClickListener
-import com.linecy.core.data.model.ItemList
+import com.linecy.eyepetizer.data.model.ItemList
 
 /**
  * 推荐页头部时间.

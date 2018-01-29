@@ -1,1 +1,1 @@
-include ':app', ':module-core'
+include ':app', ':module-eyepetizer'
