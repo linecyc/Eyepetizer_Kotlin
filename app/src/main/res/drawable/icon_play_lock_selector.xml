@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+  <!-- 锁定状态-->
+  <item android:drawable="@drawable/xplayer_ic_lock" android:state_selected="true"/>
+  <!-- 解锁状态-->
+  <item android:drawable="@drawable/xplayer_ic_un_lock"/>
+</selector>

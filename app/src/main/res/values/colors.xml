@@ -5,6 +5,7 @@
   <color name="white">#ffffff</color>
   <color name="black">#ff000000</color>
   <color name="white_button_pressed">#e0e0e0</color>
+  <color name="black_translucent">#66000000</color>
 
 
   <color name="text_dark_gray">#ff585858</color>

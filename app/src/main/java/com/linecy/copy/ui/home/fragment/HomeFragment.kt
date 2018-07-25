@@ -1,5 +1,6 @@
 package com.linecy.copy.ui.home.fragment
 
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
@@ -11,7 +12,6 @@ import android.view.Gravity
 import android.view.View
 import android.view.View.OnClickListener
 import com.linecy.copy.R
-import com.linecy.copy.databinding.FragmentHomeBinding
 import com.linecy.copy.ui.BaseFragment
 import com.linecy.copy.ui.EmptyFragment
 import com.linecy.copy.ui.home.adapter.TabAdapter
@@ -26,7 +26,7 @@ import kotlinx.android.synthetic.main.fragment_home.titleRecyclerView
 /**
  * @author by linecy
  */
-class HomeFragment : BaseFragment<FragmentHomeBinding>(),
+class HomeFragment : BaseFragment<ViewDataBinding>(),
     OnTabChangedListener, OnClickListener {
   private val mTabPopWindow by lazy { TabPopWindow(context) }
 

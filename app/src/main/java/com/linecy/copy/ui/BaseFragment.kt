@@ -22,7 +22,7 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
 
   @Inject
   protected lateinit var mViewModelFactory: ViewModelProvider.Factory
-  protected lateinit var fBinding: VB
+  protected var fBinding: VB? = null
   private var dialog: AlertDialog? = null
   private lateinit var squareView: RollSquareView
 
@@ -31,15 +31,15 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
     super.onAttach(context)
   }
 
-  override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?,
+  override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
     if (layoutResId() != 0) {
       fBinding = DataBindingUtil.inflate(inflater, layoutResId(), container,
           false)
-      return if (fBinding != null && fBinding.root != null) {
-        fBinding.root
+      return if (fBinding != null) {
+        fBinding!!.root
       } else {
-        inflater?.inflate(layoutResId(), container, false)
+        inflater.inflate(layoutResId(), container, false)
       }
     }
     return super.onCreateView(inflater, container, savedInstanceState)
@@ -82,7 +82,7 @@ abstract class BaseFragment<VB : ViewDataBinding> : Fragment() {
       dialog?.setCancelable(false)
       dialog?.show()
     } else {
-      if (null != squareView && View.VISIBLE != squareView.getVisibility()) {
+      if (null != squareView && View.VISIBLE != squareView.visibility) {
         squareView.visibility = View.VISIBLE
       }
       dialog?.show()

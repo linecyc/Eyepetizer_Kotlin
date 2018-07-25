@@ -146,6 +146,7 @@ dependencies {
   implementation rootProject.ext.ijkplayerX86
   implementation rootProject.ext.ijkplayerX86_64
   implementation rootProject.ext.ijkplayerExo
+  implementation rootProject.ext.constraintLayout
 
   implementation project(':module-eyepetizer')
 }

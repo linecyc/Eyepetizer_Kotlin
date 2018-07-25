@@ -3,7 +3,7 @@
 buildscript {
   ext {
     supportVersion = '26.1.0'
-    kotlinVersion = '1.2.21'
+    kotlinVersion = '1.2.51'
     gradleVersion = "3.0.1"
     lifecycleRuntimeVersion = "1.0.3"
     lifecycleVersion = "1.0.0"
@@ -17,6 +17,7 @@ buildscript {
 
 
     appcompat = "com.android.support:appcompat-v7:$supportVersion"
+    constraintLayout = 'com.android.support.constraint:constraint-layout:1.1.2'
     androidPlugin = "com.android.tools.build:gradle:$gradleVersion"
     androidDesign = "com.android.support:design:$supportVersion"
     kotlinPlugin = "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"

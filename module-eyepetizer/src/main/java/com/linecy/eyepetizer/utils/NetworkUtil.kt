@@ -9,41 +9,15 @@ import android.net.NetworkInfo
  */
 object NetworkUtils {
 
-  fun isNetConneted(context: Context): Boolean {
+  fun isNetConnected(context: Context): Boolean {
     val connectManager = context.getSystemService(
         Context.CONNECTIVITY_SERVICE) as ConnectivityManager
     val networkInfo: NetworkInfo? = connectManager.activeNetworkInfo
-    if (networkInfo == null) {
-      return false
+    return if (networkInfo == null) {
+      false
     } else {
-      return networkInfo.isAvailable && networkInfo.isConnected
+      networkInfo.isAvailable && networkInfo.isConnected
     }
 
   }
-
-  fun isNetworkConnected(context: Context, typeMoblie: Int): Boolean {
-    if (!isNetConneted(context)) {
-      return false
-    }
-    val connectManager = context.getSystemService(
-        Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-    val networkInfo: NetworkInfo = connectManager.getNetworkInfo(typeMoblie)
-    if (networkInfo == null) {
-      return false;
-    } else {
-      return networkInfo.isConnected && networkInfo.isAvailable
-    }
-  }
-
-  fun isPhoneNetConnected(context: Context): Boolean {
-    val typeMobile = ConnectivityManager.TYPE_MOBILE
-    return isNetworkConnected(context, typeMobile)
-  }
-
-  fun isWifiNetConnected(context: Context): Boolean {
-    val typeMobile = ConnectivityManager.TYPE_WIFI
-    return isNetworkConnected(context, typeMobile)
-  }
-
-
 }

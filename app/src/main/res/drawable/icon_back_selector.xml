@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+  <!-- 退出全屏-->
+  <item android:drawable="@drawable/ic_action_min_screen" android:state_selected="true"/>
+  <!-- 返回-->
+  <item android:drawable="@drawable/ic_action_back_white"/>
+</selector>

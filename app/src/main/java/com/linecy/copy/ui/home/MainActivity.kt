@@ -1,21 +1,23 @@
 package com.linecy.copy.ui.home
 
 import android.arch.lifecycle.ViewModel
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.support.v4.app.FragmentManager
 import android.support.v4.app.FragmentPagerAdapter
 import com.linecy.copy.R
-import com.linecy.copy.databinding.ActivityMainBinding
 import com.linecy.copy.ui.BaseActivity
 import com.linecy.copy.ui.home.fragment.FindFragment
 import com.linecy.copy.ui.home.fragment.HomeFragment
+import kotlinx.android.synthetic.main.activity_main.tabLayout
+import kotlinx.android.synthetic.main.activity_main.viewPager
 
 
 /**
  * @author by linecy
  */
-class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>() {
+class MainActivity : BaseActivity<ViewDataBinding, ViewModel>() {
 
   override fun layoutResId(): Int {
     return R.layout.activity_main
@@ -28,14 +30,14 @@ class MainActivity : BaseActivity<ActivityMainBinding, ViewModel>() {
     list.add(FindFragment())
     list.add(FindFragment())
     list.add(FindFragment())
-    mDataBinding.viewPager.adapter = FragmentAdapter(supportFragmentManager, list)
-    mDataBinding.viewPager.offscreenPageLimit = 3
+    viewPager.adapter = FragmentAdapter(supportFragmentManager, list)
+    viewPager.offscreenPageLimit = 3
 
-    mDataBinding.tabLayout.setupWithViewPager(mDataBinding.viewPager)
-    mDataBinding.tabLayout.getTabAt(0)?.setIcon(R.drawable.selector_home_button)
-    mDataBinding.tabLayout.getTabAt(1)?.setIcon(R.drawable.selector_live_button)
-    mDataBinding.tabLayout.getTabAt(2)?.setIcon(R.drawable.selector_match_button)
-    mDataBinding.tabLayout.getTabAt(3)?.setIcon(R.drawable.selector_relativity_button)
+    tabLayout.setupWithViewPager(viewPager)
+    tabLayout.getTabAt(0)?.setIcon(R.drawable.selector_home_button)
+    tabLayout.getTabAt(1)?.setIcon(R.drawable.selector_live_button)
+    tabLayout.getTabAt(2)?.setIcon(R.drawable.selector_match_button)
+    tabLayout.getTabAt(3)?.setIcon(R.drawable.selector_relativity_button)
   }
 
 

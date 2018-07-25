@@ -2,9 +2,9 @@ package com.linecy.copy.ui.splash.fragment
 
 import android.content.Context
 import android.content.Intent
+import android.databinding.ViewDataBinding
 import android.os.Bundle
 import com.linecy.copy.R
-import com.linecy.copy.databinding.FragmentWelcomeBinding
 import com.linecy.copy.ui.BaseFragment
 import com.linecy.copy.ui.home.MainActivity
 import kotlinx.android.synthetic.main.fragment_welcome.btnSkip
@@ -13,7 +13,7 @@ import kotlinx.android.synthetic.main.fragment_welcome.tvPage
 /**
  * @author by linecy
  */
-class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
+class WelcomeFragment : BaseFragment<ViewDataBinding>() {
   private var message: String? = null
 
   companion object {
@@ -37,12 +37,12 @@ class WelcomeFragment : BaseFragment<FragmentWelcomeBinding>() {
     tvPage.text = message
     tvPage.start()
 
-    btnSkip.setOnClickListener({
+    btnSkip.setOnClickListener {
       val preferences = activity.getSharedPreferences("my_copy", Context.MODE_PRIVATE)
       preferences.edit().putBoolean("lunch", true).apply()
       activity.startActivity(Intent(activity, MainActivity::class.java))
       activity.finish()
-    })
+    }
   }
 
   override fun setUserVisibleHint(isVisibleToUser: Boolean) {

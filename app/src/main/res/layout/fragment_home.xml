@@ -1,51 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
     >
   <LinearLayout
       android:layout_width="match_parent"
-      android:layout_height="match_parent"
-      android:orientation="vertical"
+      android:layout_height="wrap_content"
+      android:orientation="horizontal"
       >
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageView
+        android:id="@+id/ivTabController"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        >
-      <ImageView
-          android:id="@+id/ivTabController"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@drawable/ic_menu"
-          tools:ignore="ContentDescription"
-          />
-      <android.support.v7.widget.RecyclerView
-          android:id="@+id/titleRecyclerView"
-          android:layout_width="0dp"
-          android:layout_height="wrap_content"
-          android:layout_marginLeft="@dimen/margin_normal"
-          android:layout_marginRight="@dimen/margin_normal"
-          android:layout_marginTop="@dimen/margin_small_normal"
-          android:layout_weight="1"
-          android:background="@color/background"
-          />
-      <ImageView
-          android:id="@+id/ivSearchController"
-          android:layout_width="wrap_content"
-          android:layout_height="wrap_content"
-          android:background="@drawable/ic_action_search"
-          tools:ignore="ContentDescription"
-          />
-    </LinearLayout>
-    <View
-        android:layout_width="match_parent"
-        android:layout_height="@dimen/divider"
-        android:background="@color/divider"
+        android:background="@drawable/ic_menu"
+        tools:ignore="ContentDescription"
         />
-    <android.support.v4.view.ViewPager
-        android:id="@+id/homeViewPager"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/titleRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/margin_normal"
+        android:layout_marginRight="@dimen/margin_normal"
+        android:layout_marginTop="@dimen/margin_small_normal"
+        android:layout_weight="1"
+        android:background="@color/background"
+        />
+    <ImageView
+        android:id="@+id/ivSearchController"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_action_search"
+        tools:ignore="ContentDescription"
         />
   </LinearLayout>
-</layout>
+  <View
+      android:layout_width="match_parent"
+      android:layout_height="@dimen/divider"
+      android:background="@color/divider"
+      />
+  <android.support.v4.view.ViewPager
+      android:id="@+id/homeViewPager"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      />
+</LinearLayout>
+

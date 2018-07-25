@@ -12,7 +12,6 @@ import android.support.v7.app.AppCompatActivity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.OnClickListener
-import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
@@ -22,6 +21,7 @@ import com.linecy.copy.databinding.LayoutBaseBinding
 import com.linecy.copy.ui.widget.RollSquareView
 import com.linecy.copy.utils.AppContainer
 import dagger.android.AndroidInjection
+import kotlinx.android.synthetic.main.layout_base.appContainer
 import javax.inject.Inject
 
 abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatActivity(), OnClickListener {
@@ -29,7 +29,7 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatAc
   @Inject
   lateinit var mViewModelFactory: ViewModelProvider.Factory
 
-  protected lateinit var mDataBinding: VB
+  protected var mDataBinding: VB? = null
   private var mBaseBinding: LayoutBaseBinding? = null
   protected var mViewModel: VM? = null
   private var mToolbar: RelativeLayout? = null
@@ -48,30 +48,25 @@ abstract class BaseActivity<VB : ViewDataBinding, VM : ViewModel?> : AppCompatAc
   override fun onCreate(savedInstanceState: Bundle?) {
     AndroidInjection.inject(this)
     super.onCreate(savedInstanceState)
-    init()
+    setContentView(layoutResId())
     onInitView(savedInstanceState)
   }
 
-  private fun init() {
-    setContentView(layoutResId())
-
-    if (mViewModel != null) {
-      lifecycle.addObserver(mViewModel as LifecycleObserver)
-
-    }
-  }
-
   override fun setContentView(layoutResID: Int) {
-    val appContainer = AppContainer.DEFAULT
-    val rootView = appContainer.bind(this)
-    mBaseBinding = DataBindingUtil.inflate(layoutInflater, R.layout.layout_base, rootView, true)
-    mDataBinding = DataBindingUtil.inflate(layoutInflater, layoutResID, null, false)
+    val app = AppContainer.DEFAULT
+    val rootView = app.bind(this)
 
-    // content
-    val params = RelativeLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT,
-        ViewGroup.LayoutParams.MATCH_PARENT)
-    mDataBinding.root.layoutParams = params
-    mBaseBinding?.appContainer?.addView(mDataBinding.root)
+    mBaseBinding = DataBindingUtil.inflate(layoutInflater, R.layout.layout_base, rootView, true)
+    if (0 != layoutResID) {
+      mDataBinding = DataBindingUtil.inflate(layoutInflater, layoutResID, null, false)
+
+      // content
+      if (mDataBinding == null) {
+        layoutInflater.inflate(layoutResID, appContainer)
+      } else {
+        appContainer?.addView(mDataBinding?.root)
+      }
+    }
     // title
     mToolbar = mBaseBinding?.root?.findViewById(R.id.containerToolBar)
     mIbHomeAsUp = mBaseBinding?.root?.findViewById(R.id.containerUp)

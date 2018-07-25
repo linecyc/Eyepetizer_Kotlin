@@ -5,12 +5,12 @@ import com.squareup.moshi.Moshi
 
 object MoshiUtils {
 
-  fun <T> objectToStr(obj: Any, objType: Class<T>): String {
+  fun <T> objectToStr(obj: T, objType: Class<T>): String {
     val moshi = Moshi.Builder().build()
     val jsonAdapter = moshi.adapter(objType)
     var json = ""
     try {
-      json = jsonAdapter.toJson(obj as T)
+      json = jsonAdapter.toJson(obj)
     } catch (e: Exception) {
       e.printStackTrace()
     }

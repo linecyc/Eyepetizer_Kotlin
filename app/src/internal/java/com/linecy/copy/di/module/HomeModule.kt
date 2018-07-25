@@ -20,6 +20,6 @@ class HomeModule {
   @Singleton
   fun provideHomeRepository(homeDataSource: HomeDataSource,
       mockHomeDataSource: MockHomeDataSource): HomeRepository {
-    return if (BuildConfig.DEBUG) mockHomeDataSource else homeDataSource
+    return if (!BuildConfig.DEBUG) mockHomeDataSource else homeDataSource
   }
 }

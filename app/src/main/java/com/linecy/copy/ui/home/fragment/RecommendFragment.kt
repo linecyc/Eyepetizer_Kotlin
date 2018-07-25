@@ -48,7 +48,7 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
     }
     viewContainer.setDisplayedChildId(R.id.content)
     viewContainer.setOnReloadCallback(this)
-    fBinding.fHomeModel = mRecommendViewModel
+    fBinding?.fHomeModel = mRecommendViewModel
     val manager = LinearLayoutManager(context)
     recyclerView.layoutManager = manager
     mAdapter = RecommendAdapter(context)
@@ -75,6 +75,7 @@ class RecommendFragment : BaseFragment<FragmentRecommendBinding>(),
 
   override fun onHideLoading() {
     hideLoadingDialog()
+    swipeRefreshLayout.isRefreshing = false
   }
 
   override fun onReload() {

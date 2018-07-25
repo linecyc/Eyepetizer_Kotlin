@@ -43,7 +43,7 @@ class AuthorDetailActivity : BaseActivity<ActivityAuthorDetailBinding, ViewModel
   override fun onInitView(savedInstanceState: Bundle?) {
     hideToolBar()
     val itemList = intent.extras.getParcelable<ItemList>(Navigator.EXTRA_DATA)
-    mDataBinding.itemList = itemList
+    mDataBinding?.itemList = itemList
     appBar.addOnOffsetChangedListener(this)
     title = itemList?.data?.author?.name
     val data = ArrayList<ItemList>()

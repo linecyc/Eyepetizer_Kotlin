@@ -49,7 +49,7 @@ class AuthorFragment : BaseFragment<FragmentAuthorBinding>() {
   override fun onInitView(savedInstanceState: Bundle?) {
 
     val authorDetail = mViewModelFactory.create(AuthorDetailViewModel::class.java)
-    fBinding.authorDetail = authorDetail
+    fBinding?.authorDetail = authorDetail
 
     val list: ArrayList<ItemList>? = arguments?.getParcelableArrayList(EXTRA_DATA)
 
